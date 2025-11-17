@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>GAOS - Premium HORECA Furniture</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+	<!-- Armenian and English Fonts - Using Local Fonts -->
+<!--===============================================================================================-->
+	<style>
+		/* Darken slider background images for better text readability */
+		.item-slick1::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.4);
+			z-index: 1;
+		}
+		
+		.item-slick1 .wrap-content-slide1 {
+			position: relative;
+			z-index: 2;
+		}
+		
+		/* Darken navbar background for better text readability */
+		.wrap-menu-header {
+			background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)) !important;
+			transition: all 0.3s ease;
+		}
+		
+		/* Make navbar white when scrolled with clean animation */
+		.wrap-menu-header.scrolled {
+			background: #ffffff !important;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+		
+		/* Clean text transitions with higher specificity */
+		.wrap-menu-header .main_menu li a {
+			color: #ffffff !important;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+			transition: all 0.3s ease !important;
+			transform: scale(1) !important;
+			display: inline-block !important;
+		}
+		
+		.wrap-menu-header .main_menu li a:hover {
+			color: #f0f0f0 !important;
+			transform: scale(1.08) !important;
+		}
+		
+		/* Change text color to dark when scrolled */
+		.wrap-menu-header.scrolled .main_menu li a {
+			color: #333333 !important;
+			text-shadow: none !important;
+			transform: scale(1) !important;
+		}
+		
+		.wrap-menu-header.scrolled .main_menu li a:hover {
+			color: #000000 !important;
+			transform: scale(1.08) !important;
+		}
+		
+		/* Button styling for "Դիտել ապրանքները" */
+		.btn1 {
+			color: #000000 !important;
+			background: #ffffff !important;
+			border: 2px solid #000000 !important;
+			transition: all 0.3s ease !important;
+		}
+		
+		.btn1:hover {
+			transform: scale(1.05) !important;
+		}
+		
+		/* Custom Language Switcher with Flags */
+		.language-switcher {
+			position: relative;
+			display: flex;
+			align-items: center;
+		}
+		
+		.custom-language-select {
+			position: relative;
+			cursor: pointer;
+		}
+		
+		.selected-language {
+			display: flex;
+			align-items: center;
+			background: transparent;
+			border: 3px solid rgba(255, 255, 255, 0.3);
+			border-radius: 5px;
+			padding: 8px 12px;
+			color: #ffffff;
+			font-size: 11px;
+			transition: all 0.3s ease;
+			min-width: 85px;
+			min-height: 35px;
+		}
+		
+		.selected-language:hover {
+			border-color: rgba(255, 255, 255, 0.6);
+			transform: scale(1.05);
+		}
+		
+		.flag-icon {
+			width: 20px;
+			height: 15px;
+			margin-right: 6px;
+			object-fit: cover;
+			border-radius: 2px;
+		}
+		
+		.language-text {
+			flex: 1;
+			font-size: 13px;
+		}
+		
+		.selected-language i {
+			margin-left: 6px;
+			font-size: 11px;
+			transition: transform 0.3s ease;
+		}
+		
+		.language-options {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.9);
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			border-radius: 5px;
+			z-index: 1000;
+			display: none;
+			overflow: hidden;
+			min-width: 120px;
+		}
+		
+		.language-options.show {
+			display: block;
+		}
+		
+		.language-option {
+			display: flex;
+			align-items: center;
+			padding: 10px 12px;
+			color: #ffffff;
+			font-size: 12px;
+			transition: background 0.2s ease;
+			cursor: pointer;
+		}
+		
+		.language-option:hover {
+			background: rgba(255, 255, 255, 0.1);
+		}
+		
+		/* Language switcher when navbar is scrolled */
+		.wrap-menu-header.scrolled .selected-language {
+			border-color: rgba(0, 0, 0, 0.3);
+			color: #333333;
+		}
+		
+		.wrap-menu-header.scrolled .selected-language:hover {
+			border-color: rgba(0, 0, 0, 0.6);
+		}
+		
+		.wrap-menu-header.scrolled .language-options {
+			background: rgba(255, 255, 255, 0.95);
+			border-color: rgba(0, 0, 0, 0.2);
+		}
+		
+		.wrap-menu-header.scrolled .language-option {
+			color: #333333;
+		}
+		
+		.wrap-menu-header.scrolled .language-option:hover {
+			background: rgba(0, 0, 0, 0.1);
+		}
+		
+		/* Social media icons - simple alignment */
+		.social {
+			display: flex !important;
+			align-items: center !important;
+			gap: 10px !important;
+			margin-left: 20px !important;
+		}
+		
+		.social a {
+			color: #ffffff !important;
+			transition: all 0.3s ease !important;
+		}
+		
+		.social a:hover {
+			transform: scale(1.1) !important;
+		}
+		
+		.social a i {
+			font-size: 22px !important;
+		}
+		
+		/* Social icons when navbar is scrolled */
+		.wrap-menu-header.scrolled .social a {
+			color: #333333 !important;
+		}
+		
+		/* Logo Container with proper margins */
+		.logo-container {
+			display: flex;
+			align-items: center;
+			padding: 0 15px;
+			margin-left: -100px;
+			min-width: 120px;
+			position: relative;
+		}
+		
+		.logo {
+			margin-left: 0 !important;
+		}
+		
+		/* Mobile responsive - reset logo container on small screens */
+		@media (max-width: 768px) {
+			.logo-container {
+				margin-left: 0 !important;
+				padding: 0 15px !important;
+				min-width: auto !important;
+			}
+		}
+		
+		/* Tablet responsive - reduce logo container offset on medium screens */
+		@media (max-width: 1024px) and (min-width: 769px) {
+			.logo-container {
+				margin-left: -50px !important;
+				padding: 0 15px !important;
+			}
+		}
+		
+		/* Extra small screens - ensure logo is always visible */
+		@media (max-width: 480px) {
+			.logo-container {
+				margin-left: 0 !important;
+				padding: 0 10px !important;
+			}
+		}
+	</style>
+</head>
+<body class="animsition">
+
+	<!-- Navbar Container -->
+	<div id="navbar-container"></div>
+
+	<!-- Your page content goes here -->
+	<main>
+		<!-- Add your page content here -->
+		<section class="section-welcome bg1-pattern p-t-120 p-b-105">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 p-t-45 p-b-30">
+						<div class="wrap-text-welcome t-center">
+							<h3 class="tit3 t-center m-b-35 m-t-5">
+								Your Page Content Here
+							</h3>
+							<p class="t-center m-b-22 size3 m-l-r-auto">
+								This is a template for creating new pages with the navbar and footer components.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer Container -->
+	<div id="footer-container"></div>
+
+	<!-- Container Selection1 -->
+	<div id="dropDownSelect1"></div>
+
+	<!-- Modal Video 01-->
+	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-dismiss="modal">
+			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+			<div class="wrap-video-mo-01">
+				<div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
+				<div class="video-mo-01">
+					<iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/bootstrap/js/popper.js"></script>
+	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+	<script type="text/javascript" src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/parallax100/parallax100.js"></script>
+	<script type="text/javascript">
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="js/components.js"></script>
+	
+	<!-- Navbar scroll effect -->
+	<script>
+		$(window).scroll(function() {
+			if ($(window).scrollTop() > 50) {
+				$('.wrap-menu-header').addClass('scrolled');
+			} else {
+				$('.wrap-menu-header').removeClass('scrolled');
+			}
+		});
+		
+		// Custom Language Switcher functionality
+		$(document).ready(function() {
+			// Toggle dropdown
+			$('#selectedLanguage').click(function(e) {
+				e.stopPropagation();
+				$('#languageOptions').toggleClass('show');
+			});
+			
+			// Select language option
+			$('.language-option').click(function() {
+				var selectedValue = $(this).data('value');
+				var selectedFlag = $(this).find('img').attr('src');
+				var selectedText = $(this).find('span').text();
+				
+				// Convert to abbreviated versions
+				var abbreviatedText = '';
+				switch(selectedValue) {
+					case 'hy':
+						abbreviatedText = 'Հայ.';
+						break;
+					case 'en':
+						abbreviatedText = 'Eng.';
+						break;
+					case 'ru':
+						abbreviatedText = 'Rus.';
+						break;
+				}
+				
+				// Update selected language display
+				$('#selectedLanguage img').attr('src', selectedFlag);
+				$('#selectedLanguage .language-text').text(abbreviatedText);
+				
+				// Close dropdown
+				$('#languageOptions').removeClass('show');
+				
+				// Store language preference
+				localStorage.setItem('selectedLanguage', selectedValue);
+				
+				// Language switching logic
+				switch(selectedValue) {
+					case 'hy':
+						alert('Language changed to Armenian');
+						break;
+					case 'en':
+						alert('Language changed to English');
+						break;
+					case 'ru':
+						alert('Language changed to Russian');
+						break;
+				}
+			});
+			
+			// Close dropdown when clicking outside
+			$(document).click(function() {
+				$('#languageOptions').removeClass('show');
+			});
+			
+			// Load saved language preference
+			var savedLanguage = localStorage.getItem('selectedLanguage');
+			if (savedLanguage) {
+				var savedOption = $('.language-option[data-value="' + savedLanguage + '"]');
+				if (savedOption.length) {
+					var savedFlag = savedOption.find('img').attr('src');
+					
+					// Convert to abbreviated version
+					var abbreviatedText = '';
+					switch(savedLanguage) {
+						case 'hy':
+							abbreviatedText = 'Հայ.';
+							break;
+						case 'en':
+							abbreviatedText = 'Eng.';
+							break;
+						case 'ru':
+							abbreviatedText = 'Rus.';
+							break;
+					}
+					
+					$('#selectedLanguage img').attr('src', savedFlag);
+					$('#selectedLanguage .language-text').text(abbreviatedText);
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

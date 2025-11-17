@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Data to Firebase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .log {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .success { color: #43e97b; }
+        .error { color: #fa5252; }
+        .info { color: #667eea; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Import Furniture Data to Firebase</h1>
+        <p>This will import all your furniture items from collection.html into Firebase Firestore.</p>
+        
+        <div>
+            <button onclick="importAllData()">📦 Import All Data (165+ items)</button>
+            <button onclick="clearLog()">🗑️ Clear Log</button>
+        </div>
+        
+        <div id="log" class="log">
+            <div class="info">Ready to import...</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db, collection, addDoc } from './js/firebase-config.js';
+        
+        // Make Firebase available globally
+        window.db = db;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        
+        // Furniture database from collection.html
+        window.galleryDatabase = {
+            'new': [
+                { image: 'images/collections/New Arrive/Apollo.jpg', title: 'Apollo', description: 'Ապոլլո նորույթ' },
+                { image: 'images/collections/New Arrive/Arthur.jpg', title: 'Arthur', description: 'Արթուր նորույթ' },
+                { image: 'images/collections/New Arrive/Atlas-Wood.jpg', title: 'Atlas Wood', description: 'Ատլաս փայտե նորույթ' },
+                { image: 'images/collections/New Arrive/Elefante.jpg', title: 'Elefante', description: 'Էլեֆանտե նորույթ' },
+                { image: 'images/collections/New Arrive/Gemma-K.jpg', title: 'Gemma K', description: 'Գեմմա K նորույթ' },
+                { image: 'images/collections/New Arrive/Heritage.jpg', title: 'Heritage', description: 'Ժառանգություն նորույթ' },
+                { image: 'images/collections/New Arrive/Kyoto.jpg', title: 'Kyoto', description: 'Կիոտո նորույթ' },
+                { image: 'images/collections/New Arrive/Marino.jpg', title: 'Marino', description: 'Մարինո նորույթ' },
+                { image: 'images/collections/New Arrive/Mediterranean.jpg', title: 'Mediterranean', description: 'Միջերկրական նորույթ' },
+                { image: 'images/collections/New Arrive/Mollis.jpg', title: 'Mollis', description: 'Մոլիս նորույթ' },
+                { image: 'images/collections/New Arrive/Ocean.jpg', title: 'Ocean', description: 'Օվշեան նորույթ' },
+                { image: 'images/collections/New Arrive/Summit.jpg', title: 'Summit', description: 'Սամիթ նորույթ' },
+                { image: 'images/collections/New Arrive/Tokyo.jpg', title: 'Tokyo', description: 'Տոկիո նորույթ' },
+                { image: 'images/collections/New Arrive/Phoenix.jpg', title: 'Phoenix', description: 'Փյունիքս նորույթ' },
+                { image: 'images/collections/New Arrive/Merlin.jpg', title: 'Merlin', description: 'Մերլին նորույթ' },
+                { image: 'images/collections/New Arrive/Titan-Wood.jpg', title: 'Titan Wood', description: 'Տիտան փայտե նորույթ' },
+                { image: 'images/collections/New Arrive/Elephant.jpg', title: 'Elephant', description: 'Էլեֆանտ նորույթ' },
+                { image: 'images/collections/New Arrive/Diamond-K.jpg', title: 'Diamond K', description: 'Դիամոնդ K նորույթ' },
+                { image: 'images/collections/New Arrive/Legacy.jpg', title: 'Legacy', description: 'Լեգասի նորույթ' },
+                { image: 'images/collections/New Arrive/Tokyo-Bay.jpg', title: 'Tokyo Bay', description: 'Տոկիո Բեյ նորույթ' },
+                { image: 'images/collections/New Arrive/Marina.jpg', title: 'Marina', description: 'Մարինա նորույթ' },
+                { image: 'images/collections/New Arrive/Aegean-Sea.jpg', title: 'Aegean Sea', description: 'Էգեյան ծով նորույթ' },
+                { image: 'images/collections/New Arrive/Soft.jpg', title: 'Soft', description: 'Սոֆթ նորույթ' },
+                { image: 'images/collections/New Arrive/Pacific.jpg', title: 'Pacific', description: 'Փասիֆիկ նորույթ' },
+                { image: 'images/collections/New Arrive/Apex.jpg', title: 'Apex', description: 'Էպեքս նորույթ' },
+                { image: 'images/collections/New Arrive/Shibuya.jpg', title: 'Shibuya', description: 'Շիբույա նորույթ' }
+            ],
+            'chairs': [
+                { image: 'images/items/Nada-K.jpg', title: 'Nada K', description: 'Պրեմիում աթոռ' },
+                { image: 'images/items/Frank.jpg', title: 'Frank', description: 'Ժամանակակից աթոռ' },
+                { image: 'images/items/Sofia-K.jpg', title: 'Sofia K', description: 'Էլեգանտ աթոռ' },
+                { image: 'images/items/Messina-K.jpg', title: 'Messina K', description: 'Իտալական ոճի աթոռ' },
+                { image: 'images/items/Leo.jpg', title: 'Leo', description: 'Ամուր աթոռ' },
+                { image: 'images/items/Luna-K.jpg', title: 'Luna K', description: 'Հարմարավետ աթոռ' },
+                { image: 'images/items/Ava-K.jpg', title: 'Ava K', description: 'Նորաոճ աթոռ' },
+                { image: 'images/items/Oscar.jpg', title: 'Oscar', description: 'Կոմֆորտային աթոռ' },
+                { image: 'images/items/Emma-K.jpg', title: 'Emma K', description: 'Գեղեցիկ աթոռ' },
+                { image: 'images/items/Milano-K.jpg', title: 'Milano K', description: 'Բարձրորակ աթոռ' },
+                { image: 'images/items/Roma-K.jpg', title: 'Roma K', description: 'Դասական աթոռ' },
+                { image: 'images/items/Stella-K.jpg', title: 'Stella K', description: 'Ոճային աթոռ' },
+                { image: 'images/items/Bella-K.jpg', title: 'Bella K', description: 'Գեղեցիկ աթոռ' },
+                { image: 'images/items/Max.jpg', title: 'Max', description: 'Ուժեղ աթոռ' },
+                { image: 'images/items/Clara-K.jpg', title: 'Clara K', description: 'Պայծառ աթոռ' },
+                { image: 'images/items/Verona-K.jpg', title: 'Verona K', description: 'Իտալական դիզայն' },
+                { image: 'images/items/Felix.jpg', title: 'Felix', description: 'Երջանիկ ընտրություն' },
+                { image: 'images/items/Diana-K.jpg', title: 'Diana K', description: 'Արքայական աթոռ' },
+                { image: 'images/items/Hugo.jpg', title: 'Hugo', description: 'Հզոր աթոռ' },
+                { image: 'images/items/Aurora-K.jpg', title: 'Aurora K', description: 'Լուսավոր աթոռ' },
+                { image: 'images/items/Firenze-K.jpg', title: 'Firenze K', description: 'Ֆլորենցիական ոճ' },
+                { image: 'images/items/Nova-K.jpg', title: 'Nova K', description: 'Նոր աստղ' },
+                { image: 'images/items/Napoli-K.jpg', title: 'Napoli K', description: 'Նեապոլիտանական ոճ' },
+                { image: 'images/items/Iris-K.jpg', title: 'Iris K', description: 'Գունագեղ աթոռ' }
+            ],
+            'bar-chairs': [
+                { image: 'images/collections/Bar chairs/Avion-Wood.jpg', title: 'Avion Wood', description: 'Փայտե բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Bitta.jpg', title: 'Bitta', description: 'Ժամանակակից բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Kylo.jpg', title: 'Kylo', description: 'Ոճային բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Perla-K.jpg', title: 'Perla K', description: 'Պերլա բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Phoenix-Wood.jpg', title: 'Phoenix Wood', description: 'Փոյնիքս փայտե բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Bella.jpg', title: 'Bella', description: 'Գեղեցիկ բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Eagle-Wood.jpg', title: 'Eagle Wood', description: 'Արծիվ փայտե բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Nero.jpg', title: 'Nero', description: 'Սև բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Vita.jpg', title: 'Vita', description: 'Կենսունակ բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Atlas-Wood.jpg', title: 'Atlas Wood', description: 'Ատլաս փայտե բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Stella-Bar.jpg', title: 'Stella Bar', description: 'Աստղ բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Mira.jpg', title: 'Mira', description: 'Միրա բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Cosmo.jpg', title: 'Cosmo', description: 'Կոսմիկ բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Vento.jpg', title: 'Vento', description: 'Քամի բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Luna-Bar.jpg', title: 'Luna Bar', description: 'Լուսին բարի աթոռ' },
+                { image: 'images/collections/Bar chairs/Gemma-K.jpg', title: 'Gemma K', description: 'Ադամանդ բարի աթոռ' }
+            ],
+            'sofas': [
+                { image: 'images/collections/Armchair/Chester.jpg', title: 'Chester', description: 'Չեստեր բազկաթոռ' },
+                { image: 'images/collections/Armchair/Citrus.jpg', title: 'Citrus', description: 'Ցիտրուս բազկաթոռ' },
+                { image: 'images/collections/Armchair/Elefante.jpg', title: 'Elefante', description: 'Էլեֆանտե բազկաթոռ' },
+                { image: 'images/collections/Armchair/Lancelot.jpg', title: 'Lancelot', description: 'Լանսելոտ բազկաթոռ' },
+                { image: 'images/collections/Armchair/Windsor.jpg', title: 'Windsor', description: 'Վինձոր բազկաթոռ' },
+                { image: 'images/collections/Armchair/Manno.jpg', title: 'Manno', description: 'Մանո բազկաթոռ' },
+                { image: 'images/collections/Armchair/Lemon.jpg', title: 'Lemon', description: 'Լիմոնե բազկաթոռ' },
+                { image: 'images/collections/Armchair/Mollis.jpg', title: 'Mollis', description: 'Մոլիս բազկաթոռ' },
+                { image: 'images/collections/Armchair/Oxford.jpg', title: 'Oxford', description: 'Օքսֆորդ բազկաթոռ' },
+                { image: 'images/collections/Armchair/Sahil.jpg', title: 'Sahil', description: 'Սահիլ բազկաթոռ' },
+                { image: 'images/collections/Armchair/Mammoth.jpg', title: 'Mammoth', description: 'Մամոնտ բազկաթոռ' },
+                { image: 'images/collections/Armchair/Arthur.jpg', title: 'Arthur', description: 'Արթուր բազկաթոռ' },
+                { image: 'images/collections/Armchair/Orange.jpg', title: 'Orange', description: 'Նարինջագույն բազկաթոռ' },
+                { image: 'images/collections/Armchair/Bruno.jpg', title: 'Bruno', description: 'Բրունո բազկաթոռ' },
+                { image: 'images/collections/Armchair/Velvet.jpg', title: 'Velvet', description: 'Թավշե բազկաթոռ' },
+                { image: 'images/collections/Armchair/Jumbo.jpg', title: 'Jumbo', description: 'Ջամբո բազկաթոռ' },
+                { image: 'images/collections/Armchair/Desert.jpg', title: 'Desert', description: 'Անապատ բազկաթոռ' },
+                { image: 'images/collections/Armchair/Galahad.jpg', title: 'Galahad', description: 'Գալահադ բազկաթոռ' },
+                { image: 'images/collections/Armchair/Marco.jpg', title: 'Marco', description: 'Մարկո բազկաթոռ' },
+                { image: 'images/collections/Armchair/Silk.jpg', title: 'Silk', description: 'Մետաքսե բազկաթոռ' },
+                { image: 'images/collections/Armchair/Oasis.jpg', title: 'Oasis', description: 'Օազիս բազկաթոռ' }
+            ],
+            'tables': [
+                { image: 'images/collections/Tables/Classic.jpg', title: 'Classic', description: 'Դասական սեղան' },
+                { image: 'images/collections/Tables/Kenzo.jpg', title: 'Kenzo', description: 'Կենզո սեղան' },
+                { image: 'images/collections/Tables/Malibu.jpg', title: 'Malibu', description: 'Մալիբու սեղան' },
+                { image: 'images/collections/Tables/Prezi.jpg', title: 'Prezi', description: 'Պրեզի սեղան' },
+                { image: 'images/collections/Tables/Vintage.jpg', title: 'Vintage', description: 'Վինթեյջ սեղան' },
+                { image: 'images/collections/Tables/Tokyo.jpg', title: 'Tokyo', description: 'Տոկիո սեղան' },
+                { image: 'images/collections/Tables/Heritage.jpg', title: 'Heritage', description: 'Ժառանգություն սեղան' },
+                { image: 'images/collections/Tables/Miami.jpg', title: 'Miami', description: 'Մայամի սեղան' },
+                { image: 'images/collections/Tables/Elegance.jpg', title: 'Elegance', description: 'Էլեգանտ սեղան' },
+                { image: 'images/collections/Tables/Osaka.jpg', title: 'Osaka', description: 'Օսակա սեղան' },
+                { image: 'images/collections/Tables/Elite.jpg', title: 'Elite', description: 'Էլիտ սեղան' },
+                { image: 'images/collections/Tables/Venice.jpg', title: 'Venice', description: 'Վենեցիա սեղան' },
+                { image: 'images/collections/Tables/Kyoto.jpg', title: 'Kyoto', description: 'Կիոտո սեղան' },
+                { image: 'images/collections/Tables/Royal.jpg', title: 'Royal', description: 'Արքայական սեղան' },
+                { image: 'images/collections/Tables/Coastal.jpg', title: 'Coastal', description: 'Ափամերձ սեղան' },
+                { image: 'images/collections/Tables/Crown.jpg', title: 'Crown', description: 'Թագ սեղան' }
+            ],
+            'outdoor': [
+                { image: 'images/collections/Outdoor/Aegean.jpg', title: 'Aegean', description: 'Էգեյան դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Arven-Round.jpg', title: 'Arven Round', description: 'Արվեն կլոր դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Arven.jpg', title: 'Arven', description: 'Արվեն դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Marino-Double.jpg', title: 'Marino Double', description: 'Մարինո կրկնակի դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Marino.jpg', title: 'Marino', description: 'Մարինո դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Mediterranean.jpg', title: 'Mediterranean', description: 'Միջերկրական դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Summit-Round.jpg', title: 'Summit Round', description: 'Սամիթ կլոր դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Adriatic.jpg', title: 'Adriatic', description: 'Ադրիատիկ դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Oceano-Double.jpg', title: 'Oceano Double', description: 'Օսեանո կրկնակի դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Peak-Round.jpg', title: 'Peak Round', description: 'Փիք կլոր դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Summit.jpg', title: 'Summit', description: 'Սամիթ դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Aqua-Double.jpg', title: 'Aqua Double', description: 'Ակվա կրկնակի դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Oceano.jpg', title: 'Oceano', description: 'Օսեանո դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Peak.jpg', title: 'Peak', description: 'Փիք դրսի կահույք' },
+                { image: 'images/collections/Outdoor/Aqua.jpg', title: 'Aqua', description: 'Ակվա դրսի կահույք' }
+            ],
+            'food-court': [
+                { image: 'images/collections/Food court/Jupiter.jpg', title: 'Jupiter', description: 'Հուպիտեր ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Mercury.jpg', title: 'Mercury', description: 'Մերքուրի ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Neptune.jpg', title: 'Neptune', description: 'Նեպտուն ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Saturn.jpg', title: 'Saturn', description: 'Սատուրն ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Apollo.jpg', title: 'Apollo', description: 'Ապոլլո ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Mars.jpg', title: 'Mars', description: 'Մարս ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Poseidon.jpg', title: 'Poseidon', description: 'Պոսեյդոն ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Atlas.jpg', title: 'Atlas', description: 'Ատլաս ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Venus.jpg', title: 'Venus', description: 'Վենուս ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Triton.jpg', title: 'Triton', description: 'Տրիտոն ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Orion.jpg', title: 'Orion', description: 'Օրիոն ֆուդ կորտի կահույք' },
+                { image: 'images/collections/Food court/Ocean.jpg', title: 'Ocean', description: 'Օվշեան ֆուդ կորտի կահույք' }
+            ]
+        };
+        
+        // Import function
+        window.importAllData = async function() {
+            const log = document.getElementById('log');
+            log.innerHTML = '<div class="info">Starting import...</div>';
+            
+            let totalSuccess = 0;
+            let totalFailed = 0;
+            
+            for (const [category, items] of Object.entries(window.galleryDatabase)) {
+                log.innerHTML += `<div class="info">📁 Importing category: ${category} (${items.length} items)...</div>`;
+                
+                for (const item of items) {
+                    try {
+                        await window.addDoc(window.collection(window.db, "furniture"), {
+                            nameEn: item.title,
+                            nameHy: item.title,
+                            nameRu: '',
+                            category: category,
+                            descriptionEn: '',
+                            descriptionHy: item.description,
+                            descriptionRu: '',
+                            dimensions: '',
+                            material: '',
+                            price: null,
+                            mainImage: item.image, // Local path for now
+                            galleryImages: [],
+                            createdAt: new Date(),
+                            updatedAt: new Date(),
+                            status: 'active'
+                        });
+                        
+                        totalSuccess++;
+                        log.innerHTML += `<div class="success">✅ ${item.title}</div>`;
+                        
+                        // Small delay to avoid overwhelming Firebase
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        
+                    } catch (error) {
+                        totalFailed++;
+                        log.innerHTML += `<div class="error">❌ ${item.title}: ${error.message}</div>`;
+                    }
+                }
+            }
+            
+            log.innerHTML += `<div class="info"><br>====== IMPORT COMPLETE ======</div>`;
+            log.innerHTML += `<div class="success">✅ Successfully imported: ${totalSuccess} items</div>`;
+            if (totalFailed > 0) {
+                log.innerHTML += `<div class="error">❌ Failed: ${totalFailed} items</div>`;
+            }
+            log.innerHTML += `<div class="info">Go check your admin panel!</div>`;
+            
+            // Scroll to bottom
+            log.scrollTop = log.scrollHeight;
+        };
+        
+        window.clearLog = function() {
+            document.getElementById('log').innerHTML = '<div class="info">Log cleared. Ready to import...</div>';
+        };
+    </script>
+</body>
+</html>
+

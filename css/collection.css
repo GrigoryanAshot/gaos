@@ -1,0 +1,994 @@
+/* Collection Page Specific Styles */
+
+/* Darken navbar background for better text readability - matching index.html */
+.wrap-menu-header {
+	background: #000000 !important;
+	transition: all 0.3s ease;
+}
+
+/* Make navbar white when scrolled with clean animation - matching index.html exactly */
+.wrap-menu-header.scrolled {
+	background: #ffffff !important;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Clean text transitions with higher specificity */
+.wrap-menu-header .main_menu li a {
+	color: #ffffff !important;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	transition: all 0.3s ease !important;
+	transform: scale(1) !important;
+	display: inline-block !important;
+}
+
+.wrap-menu-header .main_menu li a:hover {
+	color: #f0f0f0 !important;
+	transform: scale(1.08) !important;
+}
+
+/* Change text color to dark when scrolled - matching index.html */
+.wrap-menu-header.scrolled .main_menu li a {
+	color: #333333 !important;
+	text-shadow: none !important;
+	transform: scale(1) !important;
+}
+
+.wrap-menu-header.scrolled .main_menu li a:hover {
+	color: #000000 !important;
+	transform: scale(1.08) !important;
+}
+
+/* Active page indicator with red underline */
+.wrap-menu-header .main_menu li a.active {
+	position: relative;
+	pointer-events: none;
+	cursor: default;
+}
+
+.wrap-menu-header .main_menu li a.active::after {
+	content: '';
+	position: absolute;
+	bottom: 5px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	height: 2px;
+	background-color: #ec1d25;
+	transition: all 0.3s ease;
+}
+
+.wrap-menu-header.scrolled .main_menu li a.active::after {
+	background-color: #ec1d25;
+}
+
+/* Hover underline for non-active links */
+.wrap-menu-header .main_menu li a:not(.active):hover::after {
+	content: '';
+	position: absolute;
+	bottom: 5px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	height: 2px;
+	background-color: #ec1d25;
+	opacity: 0.6;
+	transition: all 0.3s ease;
+}
+
+/* Sidebar menu active state */
+.menu-sidebar li a.active {
+	color: #ec1d25 !important;
+	pointer-events: none;
+	cursor: default;
+	position: relative;
+}
+
+.menu-sidebar li a.active::after {
+	content: '';
+	position: absolute;
+	bottom: -3px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 60%;
+	height: 2px;
+	background-color: #ec1d25;
+}
+
+/* Button styling for "Դիտել ապրանքները" */
+.btn1 {
+	color: #000000 !important;
+	background: #ffffff !important;
+	border: 2px solid #000000 !important;
+	transition: all 0.3s ease !important;
+}
+
+.btn1:hover {
+	transform: scale(1.05) !important;
+}
+
+/* Custom Language Switcher with Flags */
+.language-switcher {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.custom-language-select {
+	position: relative;
+	cursor: pointer;
+}
+
+.selected-language {
+	display: flex;
+	align-items: center;
+	background: transparent;
+	border: 3px solid rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	padding: 8px 12px;
+	color: #ffffff;
+	font-size: 11px;
+	transition: all 0.3s ease;
+	min-width: 85px;
+	min-height: 35px;
+}
+
+.selected-language:hover {
+	border-color: rgba(255, 255, 255, 0.6);
+	transform: scale(1.05);
+}
+
+.flag-icon {
+	width: 20px;
+	height: 15px;
+	margin-right: 6px;
+	object-fit: cover;
+	border-radius: 2px;
+}
+
+.language-text {
+	flex: 1;
+	font-size: 13px;
+}
+
+.selected-language i {
+	margin-left: 6px;
+	font-size: 11px;
+	transition: transform 0.3s ease;
+}
+
+.language-options {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.9);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	z-index: 10000 !important;
+	display: none !important;
+	overflow: hidden;
+	min-width: 120px;
+	margin-top: 5px;
+}
+
+.language-options.show {
+	display: block !important;
+}
+
+.language-option {
+	display: flex;
+	align-items: center;
+	padding: 10px 12px;
+	color: #ffffff;
+	font-size: 12px;
+	transition: background 0.2s ease;
+	cursor: pointer;
+}
+
+.language-option:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Language switcher when navbar is scrolled */
+.wrap-menu-header.scrolled .selected-language {
+	border-color: rgba(0, 0, 0, 0.3);
+	color: #333333;
+}
+
+.wrap-menu-header.scrolled .selected-language:hover {
+	border-color: rgba(0, 0, 0, 0.6);
+}
+
+.wrap-menu-header.scrolled .language-options {
+	background: rgba(255, 255, 255, 0.95);
+	border-color: rgba(0, 0, 0, 0.2);
+}
+
+.wrap-menu-header.scrolled .language-option {
+	color: #333333;
+}
+
+.wrap-menu-header.scrolled .language-option:hover {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+/* ID-based rules for social icons (highest specificity) */
+#navbar-facebook,
+#navbar-instagram {
+	color: #ffffff !important;
+	transition: all 0.3s ease !important;
+	z-index: 9999 !important;
+	position: relative !important;
+}
+
+#navbar-facebook i,
+#navbar-instagram i {
+	color: #ffffff !important;
+}
+
+#navbar-facebook:hover,
+#navbar-instagram:hover {
+	color: #f0f0f0 !important;
+	transform: scale(1.1) !important;
+}
+
+#navbar-facebook:hover i,
+#navbar-instagram:hover i {
+	color: #f0f0f0 !important;
+}
+
+/* Social icons black when scrolled (white navbar) */
+.wrap-menu-header.scrolled #navbar-facebook,
+.wrap-menu-header.scrolled #navbar-instagram {
+	color: #000000 !important;
+}
+
+.wrap-menu-header.scrolled #navbar-facebook i,
+.wrap-menu-header.scrolled #navbar-instagram i {
+	color: #000000 !important;
+}
+
+.wrap-menu-header.scrolled #navbar-facebook:hover,
+.wrap-menu-header.scrolled #navbar-instagram:hover {
+	color: #000000 !important;
+	transform: scale(1.1) !important;
+}
+
+.wrap-menu-header.scrolled #navbar-facebook:hover i,
+.wrap-menu-header.scrolled #navbar-instagram:hover i {
+	color: #000000 !important;
+}
+
+/* Category filter buttons when navbar is NOT scrolled (dark navbar) */
+.wrap-menu-header:not(.scrolled) .navbar-filter-btn {
+	color: #ffffff !important;
+	border-color: rgba(255, 255, 255, 0.3) !important;
+	background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.wrap-menu-header:not(.scrolled) .navbar-filter-btn:hover {
+	color: #ffffff !important;
+	border-color: rgba(255, 255, 255, 0.5) !important;
+	background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.wrap-menu-header:not(.scrolled) .navbar-filter-btn.is-active {
+	color: #ffffff !important;
+	background: #ec1d25 !important;
+	border-color: #ec1d25 !important;
+}
+
+/* Category filter buttons when navbar IS scrolled (white navbar) */
+.wrap-menu-header.scrolled .navbar-filter-btn {
+	color: #000000 !important;
+	border-color: #cccccc !important;
+}
+
+.wrap-menu-header.scrolled .navbar-filter-btn:hover {
+	color: #000000 !important;
+	border-color: #999999 !important;
+	background: #f5f5f5 !important;
+}
+
+.wrap-menu-header.scrolled .navbar-filter-btn.is-active {
+	color: #ffffff !important;
+	background: #ec1d25 !important;
+	border-color: #ec1d25 !important;
+}
+
+/* Logo Container with proper margins */
+.logo-container {
+	display: flex;
+	align-items: center;
+	padding: 0 15px;
+	margin-left: -100px;
+	min-width: 120px;
+	position: relative;
+}
+
+.logo {
+	margin-left: 0 !important;
+}
+
+/* Mobile responsive - reset logo container on small screens */
+@media (max-width: 768px) {
+	.logo-container {
+		margin-left: 0 !important;
+		padding: 0 15px !important;
+		min-width: auto !important;
+	}
+}
+
+/* Tablet responsive - reduce logo container offset on medium screens */
+@media (max-width: 1024px) and (min-width: 769px) {
+	.logo-container {
+		margin-left: -50px !important;
+		padding: 0 15px !important;
+	}
+}
+
+/* Extra small screens - ensure logo is always visible */
+@media (max-width: 480px) {
+	.logo-container {
+		margin-left: 0 !important;
+		padding: 0 10px !important;
+	}
+}
+
+/* Filter Button Styles */
+.label-gallery {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	padding: 0 !important;
+	border-radius: 0 !important;
+	border: 2px solid #e0e0e0 !important;
+	background: #ffffff !important;
+	color: #333333 !important;
+	transition: none !important;
+	font-size: 14px !important;
+	white-space: normal !important;
+	flex-shrink: 0 !important;
+	min-width: auto !important;
+	width: 150px !important;
+	height: 200px !important;
+	margin: 5px !important;
+}
+
+.label-gallery:hover:not(.is-actived) {
+	border-color: #333333 !important;
+	background: #ffffff !important;
+}
+
+.label-gallery.is-actived {
+	background: #ffffff !important;
+	color: #333333 !important;
+	border-color: #333333 !important;
+	border-width: 3px !important;
+	width: 180px !important;
+	height: 240px !important;
+	z-index: 10 !important;
+	transition: none !important;
+}
+
+.label-gallery.is-actived .filter-icon {
+	filter: none !important;
+}
+
+/* Active filter button images use larger size */
+body .section-gallery .label-gallery.is-actived img {
+	width: 100% !important;
+	height: 180px !important;
+	object-fit: cover !important;
+	margin: 0 !important;
+	display: block !important;
+	transition: none !important;
+}
+
+/* Style images and text within filter buttons */
+body .section-gallery .label-gallery img {
+	width: 100% !important;
+	height: 150px !important;
+	object-fit: cover !important;
+	margin: 0 !important;
+	display: block !important;
+	transition: none !important;
+}
+
+.label-gallery {
+	text-align: center !important;
+	padding: 10px !important;
+}
+
+/* Style the text within filter buttons */
+body .section-gallery .label-gallery {
+	padding: 0 !important;
+}
+
+body .section-gallery .label-gallery:not(img) {
+	text-align: center !important;
+	font-size: 12px !important;
+	line-height: 1.2 !important;
+	margin: 5px !important;
+	transition: none !important;
+}
+
+/* Style for the text div with padding */
+.filter-text {
+	text-align: center !important;
+	font-size: 12px !important;
+	line-height: 1.2 !important;
+	padding-top: 10px !important;
+	transition: none !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+	white-space: normal !important;
+	hyphens: auto !important;
+}
+
+
+/* Fixed height wrapper to prevent grid shaking */
+.filter-buttons-wrapper {
+	height: 260px !important;
+	overflow: visible !important;
+	position: relative !important;
+}
+
+/* Force all filter buttons in one row with equal width */
+.wrap-label-gallery {
+	flex-wrap: nowrap !important;
+	overflow: visible !important;
+	justify-content: center !important;
+	align-items: flex-end !important;
+	padding-bottom: 0 !important;
+	width: 100% !important;
+	gap: 8px !important;
+}
+
+/* Remove scrollbar styles since we don't need them */
+.wrap-label-gallery::-webkit-scrollbar {
+	display: none;
+}
+
+/* Gallery layout with photo and text */
+.item-gallery {
+	width: 300px !important;
+	margin-bottom: 30px !important;
+	border-radius: 0 !important;
+	background: #ffffff !important;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+	transition: all 0.3s ease !important;
+}
+
+.item-gallery:hover {
+	transform: translateY(-5px) !important;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.gallery-image-container {
+	width: 300px !important;
+	height: 300px !important;
+	overflow: hidden !important;
+	position: relative !important;
+	display: block !important;
+}
+
+.gallery-image-container img {
+	width: 300px !important;
+	height: 300px !important;
+	max-width: 300px !important;
+	max-height: 300px !important;
+	min-width: 300px !important;
+	min-height: 300px !important;
+	object-fit: cover !important;
+	transition: transform 0.3s ease !important;
+	display: block !important;
+}
+
+/* Force all gallery images to be 300x300 */
+.item-gallery img {
+	width: 300px !important;
+	height: 300px !important;
+	max-width: 300px !important;
+	max-height: 300px !important;
+	object-fit: cover !important;
+}
+
+/* Override any existing image styles */
+.wrap-gallery img {
+	width: 300px !important;
+	height: 300px !important;
+	max-width: 300px !important;
+	max-height: 300px !important;
+	object-fit: cover !important;
+}
+
+/* Force gallery items to be 300px wide */
+.item-gallery {
+	width: 300px !important;
+	max-width: 300px !important;
+}
+
+/* Override any isotope or slick carousel styles */
+.isotope-item img {
+	width: 300px !important;
+	height: 300px !important;
+	max-width: 300px !important;
+	max-height: 300px !important;
+	object-fit: cover !important;
+}
+
+/* Nuclear option - target all images in gallery */
+.section-gallery img,
+.wrap-gallery img,
+.item-gallery img,
+.gallery-image-container img,
+img[src*="photo-gallery"] {
+	width: 300px !important;
+	height: 300px !important;
+	max-width: 300px !important;
+	max-height: 300px !important;
+	object-fit: cover !important;
+}
+
+/* Override any existing gallery styles completely */
+.wrap-gallery {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	gap: 20px !important;
+}
+
+/* Force gallery layout */
+.section-gallery .wrap-gallery {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+}
+
+/* Let isotope handle the grid layout */
+.isotope-grid {
+	display: block !important;
+}
+
+.item-gallery:hover .gallery-image-container img {
+	transform: scale(1.05) !important;
+}
+
+.gallery-text {
+	padding: 15px !important;
+	text-align: center !important;
+}
+
+.gallery-text h4 {
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	color: #333333 !important;
+	margin-bottom: 8px !important;
+}
+
+.gallery-text p {
+	font-size: 14px !important;
+	color: #666666 !important;
+	margin: 0 !important;
+	line-height: 1.4 !important;
+}
+
+/* Let JavaScript handle the layout */
+body .section-gallery .wrap-gallery {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Ensure gallery is always centered, even on page load */
+.wrap-gallery {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	gap: 20px !important;
+	padding: 20px !important;
+	min-height: auto !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+.section-gallery .wrap-gallery {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Override JavaScript inline styles to force centering */
+.wrap-gallery[style] {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Force centering with maximum specificity */
+body .section-gallery .wrap-gallery.isotope-grid {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Ensure gallery is centered on page load before JavaScript runs */
+.gallery-main-container .wrap-gallery {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Force gallery items to be properly sized and centered */
+.wrap-gallery .item-gallery {
+	width: 300px !important;
+	height: 375px !important;
+	margin: 10px !important;
+	flex-shrink: 0 !important;
+	position: static !important;
+	left: auto !important;
+	top: auto !important;
+	right: auto !important;
+	bottom: auto !important;
+	display: block !important;
+	float: none !important;
+}
+
+.wrap-gallery .gallery-image-container {
+	width: 300px !important;
+	height: 300px !important;
+}
+
+.wrap-gallery .gallery-image-container img {
+	width: 300px !important;
+	height: 300px !important;
+	object-fit: cover !important;
+}
+
+.wrap-gallery .gallery-text {
+	width: 300px !important;
+	text-align: left !important;
+	padding: 10px 5px !important;
+}
+
+/* Keep hover zoom out effect, remove lightbox functionality */
+.wrap-gallery .item-gallery {
+	cursor: default !important;
+}
+
+.wrap-gallery .item-gallery:hover {
+	transform: scale(1.05) !important;
+	background: white !important;
+	border-color: #ccc !important;
+	transition: transform 0.3s ease !important;
+}
+
+.wrap-gallery .gallery-image-container:hover {
+	background: none !important;
+}
+
+.wrap-gallery .gallery-image-container img:hover {
+	transform: none !important;
+	filter: none !important;
+}
+
+
+/* Ensure footer starts right after grid */
+footer {
+	position: static !important;
+	clear: both !important;
+	margin-top: 0 !important;
+}
+
+/* Collection page navbar - matching index.html approach */
+.collection-page .wrap-menu-header {
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	height: 100px !important;
+	background: #000000 !important;
+	z-index: 1000 !important;
+	transition: all 1s ease !important;
+	-webkit-transition: all 1s ease !important;
+	-moz-transition: all 1s ease !important;
+	-o-transition: all 1s ease !important;
+}
+
+/* White when scrolled - matching index.html exactly */
+.collection-page .wrap-menu-header.scrolled {
+	background: #ffffff !important;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.collection-page .wrap-menu-header::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #ffffff;
+	opacity: 0;
+	transition: opacity 1s ease;
+	pointer-events: none;
+}
+
+/* Disable ::before overlay - we use direct background-color instead */
+.collection-page .wrap-menu-header.scrolled::before {
+	opacity: 0 !important;
+	display: none !important;
+}
+
+/* Ensure gallery container has minimal spacing */
+.gallery-main-container {
+	margin-bottom: 0 !important;
+	min-height: auto !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+/* Transition rules are now inline with background rules above */
+
+/* Smooth transition class for JavaScript control */
+.smooth-transition {
+	transition: all 1s ease !important;
+	-webkit-transition: all 1s ease !important;
+	-moz-transition: all 1s ease !important;
+	-o-transition: all 1s ease !important;
+}
+
+/* Force centering on page load - override any default alignment */
+.wrap-gallery {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	align-items: flex-start !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Ensure gallery items are centered even before JavaScript runs */
+.isotope-grid {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	align-items: flex-start !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Maximum specificity to force centering on page load */
+body .section-gallery .gallery-main-container .wrap-gallery.isotope-grid {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	align-items: flex-start !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Override any isotope or default gallery styles */
+.section-gallery .wrap-gallery.isotope-grid {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	align-items: flex-start !important;
+	gap: 20px !important;
+	padding: 20px !important;
+}
+
+/* Let isotope handle the filtering - remove conflicting CSS */
+
+body .section-gallery .item-gallery {
+	width: 100% !important;
+	height: auto !important;
+	margin: 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+}
+
+body .section-gallery .gallery-image-container {
+	width: 100% !important;
+	height: 250px !important;
+	overflow: hidden !important;
+}
+
+body .section-gallery img {
+	width: 100% !important;
+	height: 250px !important;
+	object-fit: cover !important;
+}
+
+/* Force text below photos */
+body .section-gallery .gallery-text {
+	width: 100% !important;
+	text-align: center !important;
+	margin-top: 10px !important;
+	display: block !important;
+	padding: 15px !important;
+}
+
+/* Override any existing text positioning */
+body .section-gallery .item-gallery .gallery-text {
+	position: static !important;
+	float: none !important;
+	clear: both !important;
+}
+
+/* Nuclear option - completely override layout */
+body .section-gallery .item-gallery {
+	display: block !important;
+	width: 200px !important;
+	height: auto !important;
+	margin: 10px !important;
+}
+
+body .section-gallery .gallery-image-container {
+	display: block !important;
+	width: 200px !important;
+	height: 200px !important;
+	margin-bottom: 10px !important;
+}
+
+body .section-gallery .gallery-text {
+	display: block !important;
+	width: 200px !important;
+	text-align: center !important;
+	margin: 0 !important;
+	padding: 10px !important;
+}
+
+/* Force gallery items to have text below photos within borders */
+body .section-gallery .item-gallery {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	width: 200px !important;
+	height: auto !important;
+	margin: 10px !important;
+	border: 2px solid #ccc !important;
+	background: white !important;
+	padding: 0 !important;
+}
+
+body .section-gallery .gallery-image-container {
+	width: 200px !important;
+	height: 200px !important;
+	overflow: hidden !important;
+	display: block !important;
+}
+
+body .section-gallery .gallery-image-container img {
+	width: 200px !important;
+	height: 200px !important;
+	object-fit: cover !important;
+}
+
+body .section-gallery .gallery-text {
+	display: block !important;
+	width: 200px !important;
+	text-align: center !important;
+	padding: 10px !important;
+	margin: 0 !important;
+	background: white !important;
+}
+
+body .section-gallery .gallery-text h4 {
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: 14px !important;
+}
+
+	body .section-gallery .gallery-text p {
+		margin: 0 !important;
+		padding: 0 !important;
+		font-size: 12px !important;
+	}
+
+/* Footer styles copied from main.css */
+.footer-links li a {
+	display: block;
+	padding: 5px 0;
+	transition: all 0.3s ease;
+}
+
+.footer-links li a:hover {
+	color: #ec1d25 !important;
+	text-decoration: none;
+	transform: translateX(5px);
+}
+
+/* Gallery footer */
+.item-gallery-footer {
+	display: block;
+	position: relative;
+	width: calc((100% - 50px) / 4 );
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.item-gallery-footer::after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.item-gallery-footer:hover:after {
+	background-color: rgba(236,29,37,0.7);
+}
+
+/* Footer background classes copied from util.css */
+.bg1 {
+	background-color: #222222;
+}
+
+.bg2 {
+	background-color: #111111;
+}
+
+/* Footer gallery grid layout */
+.wrap-gallery-footer {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: flex-start !important;
+	align-items: flex-start !important;
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.wrap-gallery-footer .item-gallery-footer {
+	width: 80px !important;
+	height: 80px !important;
+	margin: 2px !important;
+	padding: 0 !important;
+	border: none !important;
+	display: block !important;
+	flex: 0 0 auto !important;
+	background: none !important;
+	box-shadow: none !important;
+	transform: none !important;
+	transition: none !important;
+	position: static !important;
+	float: none !important;
+	clear: none !important;
+}
+
+.wrap-gallery-footer .item-gallery-footer img {
+	width: 80px !important;
+	height: 80px !important;
+	object-fit: cover !important;
+	display: block !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	background: none !important;
+	box-shadow: none !important;
+	transform: none !important;
+	transition: none !important;
+	position: static !important;
+	float: none !important;
+	clear: none !important;
+}
+
