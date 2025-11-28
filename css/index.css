@@ -903,6 +903,22 @@ input[type="date" i] {
     line-height: 1.35;
     letter-spacing: 2px;
   }
+
+  /* Make intro section text smaller */
+  .header-intro .tit2 {
+    font-size: 24px !important;
+  }
+
+  .header-intro .tit4 {
+    font-size: 36px !important;
+    letter-spacing: 6px !important;
+  }
+
+  /* Make "Our Products" heading smaller */
+  .tit5 {
+    font-size: 36px !important;
+    letter-spacing: 6px !important;
+  }
 }
 
 /*[ Button3 ]

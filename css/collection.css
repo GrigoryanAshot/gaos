@@ -493,6 +493,19 @@
 	}
 }
 
+/* Make logo 30% smaller on mobile (under 500px) - match index.html */
+@media (max-width: 500px) {
+	.logo-container {
+		transform: scale(0.7);
+		transform-origin: left center;
+	}
+	
+	.logo img {
+		max-height: 35px !important;
+		height: 35px !important;
+	}
+}
+
 /* Filter Button Styles */
 .label-gallery {
 	display: flex !important;
