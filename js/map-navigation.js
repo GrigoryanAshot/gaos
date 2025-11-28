@@ -7,8 +7,8 @@
 	
 	// Destination coordinates (from the Google Maps embed)
 	const DESTINATION = {
-		lat: 40.19845199362052,
-		lng: 44.532945275613834,
+		lat: 40.19839916943787,
+		lng: 44.534133142145805,
 		address: 'ք․ Երևան, Կարապետ Ուլնեցի 58/20Բ'
 	};
 	
