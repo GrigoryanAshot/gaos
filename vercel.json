@@ -30,6 +30,11 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/send-admin-code.js": {
+      "maxDuration": 10
+    }
+  }
 }
 
