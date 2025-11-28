@@ -36,16 +36,17 @@
 		
 		// Override Lightbox2's start method to use our correctly ordered album
 		var originalStart = lightbox.start.bind(lightbox);
+		var $window = $(window);
 		
 		lightbox.start = function($link) {
 			// Check if this is a footer gallery link
 			var dataLightboxValue = $link.attr('data-lightbox');
 			
 			if (dataLightboxValue === 'gallery-footer') {
-				// Build album in the correct order from footer gallery
+				// Build album in the correct order from footer gallery ONLY
 				var album = [];
 				var imageNumber = 0;
-				var clickedHref = $link.attr('href');
+				var clickedElement = $link[0]; // Get the actual DOM element
 				
 				$galleryLinks.each(function(index) {
 					var $albumLink = $(this);
@@ -54,24 +55,40 @@
 						title: $albumLink.attr('data-title') || $albumLink.attr('title') || ''
 					});
 					
-					// Find the index of the clicked image
-					if ($albumLink.attr('href') === clickedHref) {
+					// Find the index of the clicked image by comparing DOM elements
+					if (this === clickedElement) {
 						imageNumber = index;
 					}
 				});
 				
-				// Temporarily override the album building in originalStart
-				// by setting the album before calling it, then restoring after
+				// Set the album
 				lightbox.album = album;
+				lightbox.currentImageIndex = imageNumber;
 				
-				// Call original start method - it will rebuild the album, so we need to fix it after
-				originalStart($link);
+				// Manually do what start() does, but with our correct album
+				$window.on('resize', $.proxy(lightbox.sizeOverlay, lightbox));
 				
-				// Restore our correctly ordered album and show the correct image
-				lightbox.album = album;
-				if (imageNumber >= 0 && imageNumber < album.length) {
-					lightbox.changeImage(imageNumber);
+				$('select, object, embed').css({
+					visibility: 'hidden'
+				});
+				
+				lightbox.sizeOverlay();
+				
+				// Position Lightbox
+				var top = $window.scrollTop() + lightbox.options.positionFromTop;
+				var left = $window.scrollLeft();
+				lightbox.$lightbox.css({
+					top: top + 'px',
+					left: left + 'px'
+				}).fadeIn(lightbox.options.fadeDuration);
+				
+				// Disable scrolling of the page while open
+				if (lightbox.options.disableScrolling) {
+					$('body').addClass('lb-disable-scrolling');
 				}
+				
+				// Show the correct image
+				lightbox.changeImage(imageNumber);
 			} else {
 				// For other lightboxes, use original behavior
 				originalStart($link);
@@ -80,11 +97,19 @@
 	}
 	
 	// Initialize when DOM is ready
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initFooterGallery);
+	// Use jQuery ready if available, otherwise use DOMContentLoaded
+	if (typeof jQuery !== 'undefined') {
+		jQuery(document).ready(function() {
+			// Wait a bit longer to ensure lightbox is fully initialized
+			setTimeout(initFooterGallery, 200);
+		});
+	} else if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', function() {
+			setTimeout(initFooterGallery, 200);
+		});
 	} else {
 		// DOM is already ready, but wait a bit for jQuery/lightbox to load
-		setTimeout(initFooterGallery, 50);
+		setTimeout(initFooterGallery, 200);
 	}
 })();
 
