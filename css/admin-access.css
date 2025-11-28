@@ -1,0 +1,157 @@
+/* Admin Access Modal Styles */
+.admin-modal {
+	display: none;
+	position: fixed;
+	z-index: 10000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(5px);
+}
+
+.admin-modal-content {
+	background-color: #ffffff;
+	margin: 15% auto;
+	padding: 30px;
+	border: 2px solid #ec1d25;
+	border-radius: 10px;
+	width: 90%;
+	max-width: 400px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	position: relative;
+	animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.admin-modal-close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	cursor: pointer;
+	line-height: 1;
+	transition: color 0.3s ease;
+}
+
+.admin-modal-close:hover,
+.admin-modal-close:focus {
+	color: #ec1d25;
+}
+
+.admin-modal-content h2 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	color: #333333;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.admin-modal-content p {
+	margin-bottom: 20px;
+	color: #666666;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.admin-code-input {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 15px;
+	border: 2px solid #e0e0e0;
+	border-radius: 5px;
+	font-size: 24px;
+	text-align: center;
+	letter-spacing: 8px;
+	box-sizing: border-box;
+	font-weight: 600;
+	transition: border-color 0.3s ease;
+}
+
+.admin-code-input:focus {
+	outline: none;
+	border-color: #ec1d25;
+	box-shadow: 0 0 0 3px rgba(236, 29, 37, 0.1);
+}
+
+.admin-submit-btn {
+	width: 100%;
+	padding: 12px;
+	background-color: #ec1d25;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.admin-submit-btn:hover {
+	background-color: #d41b22;
+}
+
+.admin-submit-btn:active {
+	transform: scale(0.98);
+}
+
+.admin-error-msg {
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #ffebee;
+	color: #c62828;
+	border-radius: 5px;
+	font-size: 14px;
+	text-align: center;
+	animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	25% { transform: translateX(-10px); }
+	75% { transform: translateX(10px); }
+}
+
+.admin-loading-msg {
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #e3f2fd;
+	color: #1976d2;
+	border-radius: 5px;
+	font-size: 14px;
+	text-align: center;
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+	.admin-modal-content {
+		margin: 20% auto;
+		padding: 20px;
+		max-width: 90%;
+	}
+	
+	.admin-modal-content h2 {
+		font-size: 20px;
+	}
+	
+	.admin-code-input {
+		font-size: 20px;
+		letter-spacing: 5px;
+	}
+}
+

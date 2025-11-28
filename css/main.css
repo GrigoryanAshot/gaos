@@ -86,7 +86,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /* Local Armenian Font */
 @font-face {
   font-family: 'Arm Hmk Light';
-  src: url('../fonts/Arm HMK\'S/ArmHmkLight.ttf') format('truetype');
+  src: url("../fonts/Arm HMK'S/ARM HMK'S LIGHT BOLD.TTF") format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -94,14 +94,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /* Local English Font */
 @font-face {
   font-family: 'Renogare';
-  src: url('../fonts/Renogare/Renogare-Regular.ttf') format('truetype');
+  src: url('../fonts/Renogare/Renogare-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Renogare';
-  src: url('../fonts/Renogare/Renogare-Bold.ttf') format('truetype');
+  src: url('../fonts/Renogare/Renogare-Regular.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }
@@ -111,8 +111,48 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   font-family: 'Arm Hmk Light', 'Arm Hmk', Arial, sans-serif !important;
 }
 
+/* Ensure Armenian text uses Arm Hmk Light even with utility classes */
+[lang="hy"].tit3,
+[lang="hy"].txt1,
+[lang="hy"].txt2,
+[lang="hy"].txt13,
+[lang="hy"].txt14,
+[lang="hy"].txt19,
+.armenian-text.tit3,
+.armenian-text.txt1,
+.armenian-text.txt2,
+.armenian-text.txt13,
+.armenian-text.txt14,
+.armenian-text.txt19 {
+  font-family: 'Arm Hmk Light', 'Arm Hmk', Arial, sans-serif !important;
+}
+
 [lang="en"], .english-text {
   font-family: 'Renogare', Arial, sans-serif !important;
+}
+
+/* Ensure English text uses Renogare even with utility classes */
+[lang="en"].tit3,
+[lang="en"].txt1,
+[lang="en"].txt2,
+[lang="en"].txt13,
+[lang="en"].txt14,
+[lang="en"].txt19,
+.english-text.tit3,
+.english-text.txt1,
+.english-text.txt2,
+.english-text.txt13,
+.english-text.txt14,
+.english-text.txt19 {
+  font-family: 'Renogare', Arial, sans-serif !important;
+}
+
+@media (max-width: 600px) {
+  .section-booking .tit3 {
+    font-size: 1.4rem !important;
+    line-height: 1.35;
+    letter-spacing: 2px;
+  }
 }
 
 /* Default font for mixed content */
@@ -534,12 +574,13 @@ input[type="date" i] {
 .wrap-menu-header {
   position: fixed;
   width: 100%;
-  height: 120px;
+  height: 100px;
   top: 0;
   left: 0;
   z-index: 1000;
   border-top: 5px solid #ec1d25;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+  will-change: background-color, box-shadow, height;
 }
 
 .wrap_header {
@@ -859,10 +900,31 @@ body:not(.collection-page) .header-fixed .wrap-menu-header.extra-area {
   background-color: white;
   top: 0;
   right: -390px;
+  transition: right 0.4s ease, visibility 0.4s ease, opacity 0.4s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.sidebar.show-sidebar {
+  right: 0px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.sidebar:not(.show-sidebar) {
+  right: -390px !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 @media (max-width: 576px) {
-  .sidebar {width: 300px;}
+  .sidebar {
+    width: 300px;
+  }
+  
+  .sidebar:not(.show-sidebar) {
+    right: -300px !important;
+  }
 }
 
 .show-sidebar {
@@ -1619,6 +1681,7 @@ body {padding-right: 0px !important;}
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
+  pointer-events: none;
 }
 
 .item-gallery-footer:hover:after {

@@ -1,5 +1,36 @@
-// Navbar and Footer Translations
+﻿// Navbar and Footer Translations
 // This file handles translations for navbar menu items and footer content
+
+// Basic polyfills for older browsers (Edge Legacy / IE)
+(function() {
+  if (typeof NodeList !== 'undefined' && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+  if (!String.prototype.includes) {
+    String.prototype.includes = function(search, start) {
+      if (typeof start !== 'number') {
+        start = 0;
+      }
+      if (start + search.length > this.length) {
+        return false;
+      }
+      return this.indexOf(search, start) !== -1;
+    };
+  }
+})();
+
+window.gaosTranslationDebug = true;
+function runTranslationStep(stepName, fn) {
+  try {
+    fn();
+  } catch (error) {
+    console.error(`❌ Translation step "${stepName}" failed:`, error);
+    console.error('👉 Location:', error && error.stack ? error.stack.split('\n')[1] : 'stack unavailable');
+    if (window.gaosTranslationDebug) {
+      debugger;
+    }
+  }
+}
 
 // Translation dictionary
 const translations = {
@@ -62,9 +93,9 @@ const translations = {
       ru: 'Понедельник - Суббота'
     },
     copyright: {
-      hy: '2024 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է',
-      en: '2024 GAOS Furniture. All rights reserved | Website made by',
-      ru: '2024 GAOS Furniture. Все права защищены | Сайт создан'
+      hy: '2025 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է',
+      en: '2025 GAOS Furniture. All rights reserved | Website made by',
+      ru: '2025 GAOS Furniture. Все права защищены | Сайт создан'
     },
     touchWebAgency: {
       hy: 'Touch Web Agency',
@@ -80,7 +111,7 @@ const translations = {
   navbarCategories: {
     new: {
       hy: 'Նորույթներ',
-      en: 'New',
+      en: 'New Arrivals',
       ru: 'Новинки'
     },
     chairs: {
@@ -95,7 +126,7 @@ const translations = {
     },
     sofas: {
       hy: 'Բազմոց-Բազկաթոռ',
-      en: 'Sofas',
+      en: 'Sofas & Armchairs',
       ru: 'Диваны'
     },
     tables: {
@@ -105,19 +136,19 @@ const translations = {
     },
     outdoor: {
       hy: 'Դրսի կահույք',
-      en: 'Outdoor',
+      en: 'Outdoor Furniture',
       ru: 'Уличная мебель'
     },
     foodCourt: {
       hy: 'Ֆուդ կորտի կահույք',
-      en: 'Food Court',
+      en: 'Food Court Furniture',
       ru: 'Мебель для фудкорта'
     }
   },
   index: {
     welcome: {
       hy: 'Բարի Գալուստ',
-      en: 'Welcome',
+      en: 'Welcome to',
       ru: 'Добро пожаловать'
     },
     viewProducts: {
@@ -125,15 +156,10 @@ const translations = {
       en: 'View Products',
       ru: 'Посмотреть товары'
     },
-    premiumHorecaFurniture: {
-      hy: 'Պրեմիում HORECA Կահույք',
-      en: 'Premium HORECA Furniture',
-      ru: 'Премиальная HORECA Мебель'
-    },
     welcomeToGAOS: {
-      hy: 'Բարի Գալուստ GAOS',
-      en: 'Welcome to GAOS',
-      ru: 'Добро пожаловать в GAOS'
+      hy: 'GAOS',
+      en: 'GAOS',
+      ru: 'GAOS'
     },
     welcomeDescription: {
       hy: 'Մենք մասնագիտանում ենք բարձրորակ կահույքի լուծումներ տրամադրելու մեջ հյուրանոցների, ռեստորանների, սրճարանների և հյուրասիրության բիզնեսների համար: Մեր լայն տեսականին ներառում է ճաշասեղանների կահույք, նստատեղերի լուծումներ և առևտրային դասի կտորներ, որոնք նախագծված են ամրության և ոճի համար:',
@@ -356,11 +382,6 @@ const translations = {
     }
   },
   about: {
-    premiumHorecaFurniture: {
-      hy: 'Պրեմիում HORECA Կահույք',
-      en: 'Premium HORECA Furniture',
-      ru: 'Премиальная HORECA Мебель'
-    },
     ourStory: {
       hy: 'Մեր Պատմությունը',
       en: 'Our Story',
@@ -375,6 +396,16 @@ const translations = {
       hy: 'Բացահայտեք',
       en: 'Discover',
       ru: 'Откройте'
+    },
+    watch: {
+      hy: 'Դիտե՛ք',
+      en: 'Watch',
+      ru: 'Смотрите'
+    },
+    ourVideo: {
+      hy: 'Մեր փոքրիկ հոլովակը',
+      en: 'Our Video',
+      ru: 'Наше видео'
     },
     ourShowroom: {
       hy: 'Մեր Ցուցասրահը',
@@ -410,6 +441,21 @@ const translations = {
       hy: 'Յուրաքանչյուր հյուրասիրության բիզնես յուրահատուկ է, ինչպես և նրանց կահույքի կարիքները: Մեր դիզայներական թիմը սերտորեն համագործակցում է հաճախորդների հետ՝ ստեղծելու անհատական լուծումներ, որոնք կատարյալ համապատասխանում են նրանց տեսլականին, տարածքի պահանջներին և բրենդի ինքնությանը:',
       en: 'Every hospitality business is unique, as are their furniture needs. Our design team works closely with clients to create custom solutions that perfectly match their vision, space requirements, and brand identity.',
       ru: 'Каждый бизнес в сфере гостеприимства уникален, как и их потребности в мебели. Наша команда дизайнеров тесно сотрудничает с клиентами для создания индивидуальных решений, которые идеально соответствуют их видению, требованиям пространства и идентичности бренда.'
+    },
+    ourPartners: {
+      hy: 'Մեր Գործընկերները',
+      en: 'Our Partners',
+      ru: 'Наши партнеры'
+    },
+    trustedPartners: {
+      hy: 'Վստահելի Գործընկերներ',
+      en: 'Trusted Partners',
+      ru: 'Надежные партнеры'
+    },
+    partnersSubtitle: {
+      hy: 'Մեզ վստահում են մի շարք առաջատար սննդի և հյուրանոցային օբյեկտներ',
+      en: 'Trusted by leading food and hospitality establishments',
+      ru: 'Нам доверяют ведущие предприятия общественного питания и гостиничного бизнеса'
     }
   },
   contact: {
@@ -481,9 +527,38 @@ const translations = {
   }
 };
 
+function setElementLanguage(element, lang) {
+  if (!element) return;
+  element.setAttribute('lang', lang);
+  element.classList.remove('armenian-text', 'english-text');
+  if (lang === 'hy') {
+    element.classList.add('armenian-text');
+  } else if (lang === 'en') {
+    element.classList.add('english-text');
+  }
+}
+
 // Get current language
 function getCurrentLanguage() {
   return localStorage.getItem('selectedLanguage') || 'hy';
+}
+
+// Update elements with data-text attributes (for page-specific text variables)
+function updatePageTexts() {
+  const lang = getCurrentLanguage();
+  const textElements = document.querySelectorAll('[data-text]');
+  
+  textElements.forEach(element => {
+    const varName = element.getAttribute('data-text');
+    
+    // Check if the variable exists in window scope (from index-texts.js, about-texts.js, etc.)
+    if (window[varName] && window[varName][lang]) {
+      element.textContent = window[varName][lang];
+      setElementLanguage(element, lang);
+    } else {
+      console.warn(`⚠️ Text variable "${varName}" not found or missing translation for language "${lang}"`);
+    }
+  });
 }
 
 // Update navbar menu items
@@ -590,6 +665,7 @@ function updateNavbarCategories() {
     elements.forEach(el => {
       if (translations.navbarCategories[key] && translations.navbarCategories[key][lang]) {
         el.textContent = translations.navbarCategories[key][lang];
+        setElementLanguage(el, lang);
       }
     });
   });
@@ -604,6 +680,7 @@ function updateFooter() {
   if (contactHeading && !contactHeading.classList.contains('m-b-32') && !contactHeading.classList.contains('m-b-38')) {
     if (translations.footer.contactUs[lang]) {
       contactHeading.textContent = translations.footer.contactUs[lang];
+      setElementLanguage(contactHeading, lang);
     }
   }
   
@@ -621,6 +698,7 @@ function updateFooter() {
         } else {
           el.textContent = translations.footer.address[lang];
         }
+        setElementLanguage(el, lang);
       }
     }
   });
@@ -631,6 +709,7 @@ function updateFooter() {
     if (heading.textContent.includes('Ցուցասրահ') || heading.textContent.includes('Showroom') || heading.textContent.includes('шоурум')) {
       if (translations.footer.showroomHours[lang]) {
         heading.textContent = translations.footer.showroomHours[lang];
+        setElementLanguage(heading, lang);
       }
     }
   });
@@ -641,6 +720,7 @@ function updateFooter() {
     if (el.textContent.includes('Երկուշաբթի') || el.textContent.includes('Monday') || el.textContent.includes('Понедельник')) {
       if (translations.footer.mondaySaturday[lang]) {
         el.textContent = translations.footer.mondaySaturday[lang];
+        setElementLanguage(el, lang);
       }
     }
   });
@@ -651,7 +731,7 @@ function updateFooter() {
     if (heading.textContent.includes('Արագ') || heading.textContent.includes('Quick') || heading.textContent.includes('Быстрые')) {
       if (translations.footer.quickLinks[lang]) {
         heading.textContent = translations.footer.quickLinks[lang];
-        heading.setAttribute('lang', lang);
+        setElementLanguage(heading, lang);
       }
     }
   });
@@ -666,49 +746,49 @@ function updateFooter() {
     if (currentText.includes('Խորհրդատվություն') || currentText.includes('Consultation') || currentText.includes('Консультация')) {
       if (translations.navbar.consultation[lang]) {
         link.textContent = translations.navbar.consultation[lang];
-        link.setAttribute('lang', lang);
+        setElementLanguage(link, lang);
       }
     }
     // Check if this is consultation link by href
     else if (href.includes('reservation.html')) {
       if (translations.navbar.consultation[lang]) {
         link.textContent = translations.navbar.consultation[lang];
-        link.setAttribute('lang', lang);
+        setElementLanguage(link, lang);
       }
     }
     // Check if this is home link - check text content
     else if (currentText.includes('Գլխավոր') || currentText.includes('Home') || currentText.includes('Главная')) {
       if (translations.navbar.home[lang]) {
         link.textContent = translations.navbar.home[lang];
-        link.setAttribute('lang', lang);
+        setElementLanguage(link, lang);
       }
     }
     // Check if this is home link by href (only if text doesn't match consultation)
     else if (href.includes('index.html')) {
       if (translations.navbar.home[lang]) {
         link.textContent = translations.navbar.home[lang];
-        link.setAttribute('lang', lang);
+        setElementLanguage(link, lang);
       }
     }
     // Check if this is collection link
     else if (href.includes('collection.html') || currentText.includes('Տեսականի') || currentText.includes('Collection') || currentText.includes('Коллекция')) {
       if (translations.navbar.collection[lang]) {
         link.textContent = translations.navbar.collection[lang];
-        link.setAttribute('lang', lang);
+        setElementLanguage(link, lang);
       }
     }
     // Check if this is about link
     else if (href.includes('about.html') || currentText.includes('Մեր մասին') || currentText.includes('About Us') || currentText.includes('О нас')) {
       if (translations.navbar.about[lang]) {
         link.textContent = translations.navbar.about[lang];
-        link.setAttribute('lang', lang);
+        setElementLanguage(link, lang);
       }
     }
     // Check if this is contact link
     else if (href.includes('contact.html') || currentText.includes('Կապ մեզ հետ') || currentText.includes('Contact Us') || currentText.includes('Связаться с нами')) {
       if (translations.navbar.contact[lang]) {
         link.textContent = translations.navbar.contact[lang];
-        link.setAttribute('lang', lang);
+        setElementLanguage(link, lang);
       }
     }
   });
@@ -719,6 +799,7 @@ function updateFooter() {
     if (heading.textContent.includes('Պատկերասրահ') || heading.textContent.includes('Gallery') || heading.textContent.includes('Галерея')) {
       if (translations.footer.gallery[lang]) {
         heading.textContent = translations.footer.gallery[lang];
+        setElementLanguage(heading, lang);
       }
     }
   });
@@ -735,13 +816,14 @@ function updateFooter() {
         // Add Touch Web Agency link with appropriate suffix
         // For Russian: "компанией" comes before the link, for Armenian: suffix comes after
         if (lang === 'ru') {
-          copyrightHTML += ' ' + translations.footer.touchWebAgencySuffix[lang] + ' <a href="#" target="_blank">' + translations.footer.touchWebAgency[lang] + '</a>';
+          copyrightHTML += ' ' + translations.footer.touchWebAgencySuffix[lang] + ' <a href="https://touchweb.am" target="_blank">' + translations.footer.touchWebAgency[lang] + '</a>';
         } else {
           const suffix = translations.footer.touchWebAgencySuffix[lang] || '';
-          copyrightHTML += ' <a href="#" target="_blank">' + translations.footer.touchWebAgency[lang] + '</a>' + suffix;
+          copyrightHTML += ' <a href="https://touchweb.am" target="_blank">' + translations.footer.touchWebAgency[lang] + '</a>' + suffix;
         }
         
         copyrightText.innerHTML = copyrightHTML;
+        setElementLanguage(copyrightText, lang);
       }
     }
   }
@@ -756,6 +838,7 @@ function updateSubscriptionForms() {
   subscriptionTexts.forEach(subscriptionText => {
     if (subscriptionText && translations.index.subscription[lang]) {
       subscriptionText.textContent = translations.index.subscription[lang];
+      setElementLanguage(subscriptionText, lang);
     }
   });
   
@@ -764,6 +847,7 @@ function updateSubscriptionForms() {
   emailInputs.forEach(emailInput => {
     if (emailInput && translations.index.emailAddress[lang]) {
       emailInput.placeholder = translations.index.emailAddress[lang];
+      setElementLanguage(emailInput, lang);
     }
   });
   
@@ -772,6 +856,7 @@ function updateSubscriptionForms() {
   subscribeButtons.forEach(subscribeButton => {
     if (subscribeButton && translations.index.subscribe[lang]) {
       subscribeButton.textContent = translations.index.subscribe[lang];
+      setElementLanguage(subscribeButton, lang);
     }
   });
 }
@@ -822,6 +907,7 @@ function updateIndexPage() {
     if (text.includes('Դիտել Ապրանքները') || text.includes('View Products') || text.includes('Посмотреть товары')) {
       if (translations.index.viewProducts[lang]) {
         btn.textContent = translations.index.viewProducts[lang];
+        setElementLanguage(btn, lang);
       }
     }
   });
@@ -831,6 +917,7 @@ function updateIndexPage() {
   if (premiumTitle && (premiumTitle.textContent.includes('Պրեմիում') || premiumTitle.textContent.includes('Premium') || premiumTitle.textContent.includes('Премиальная'))) {
     if (translations.index.premiumHorecaFurniture[lang]) {
       premiumTitle.textContent = translations.index.premiumHorecaFurniture[lang];
+      setElementLanguage(premiumTitle, lang);
     }
   }
   
@@ -845,6 +932,7 @@ function updateIndexPage() {
         currentText.includes('GAOS')) {
       if (translations.index.welcomeToGAOS[lang]) {
         welcomeHeading.textContent = translations.index.welcomeToGAOS[lang];
+        setElementLanguage(welcomeHeading, lang);
       }
     }
   }
@@ -854,6 +942,7 @@ function updateIndexPage() {
   if (welcomeDesc && (welcomeDesc.textContent.includes('Մենք մասնագիտանում') || welcomeDesc.textContent.includes('We specialize') || welcomeDesc.textContent.includes('Мы специализируемся'))) {
     if (translations.index.welcomeDescription[lang]) {
       welcomeDesc.textContent = translations.index.welcomeDescription[lang];
+      setElementLanguage(welcomeDesc, lang);
     }
   }
   
@@ -862,6 +951,7 @@ function updateIndexPage() {
   if (ourStoryLink && (ourStoryLink.textContent.includes('Մեր Պատմությունը') || ourStoryLink.textContent.includes('Our Story') || ourStoryLink.textContent.includes('Наша история'))) {
     if (translations.index.ourStory[lang]) {
       ourStoryLink.innerHTML = translations.index.ourStory[lang] + ' <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>';
+      setElementLanguage(ourStoryLink, lang);
     }
   }
   
@@ -888,18 +978,25 @@ function updateIndexPage() {
   // Restaurant/Hotel/Cafe Furniture headings
   const furnitureHeadings = document.querySelectorAll('.blo1 h4.txt5');
   furnitureHeadings.forEach(el => {
+    // If this element is controlled by data-text (index-texts.js), skip
+    if (el.hasAttribute('data-text')) {
+      return;
+    }
     const text = el.textContent.trim();
     if (text.includes('Ռեստորանի Կահույք') || text.includes('Restaurant Furniture') || text.includes('Ресторанная мебель')) {
       if (translations.index.restaurantFurniture[lang]) {
         el.textContent = translations.index.restaurantFurniture[lang];
+        setElementLanguage(el, lang);
       }
     } else if (text.includes('Հյուրանոցի Կահույք') || text.includes('Hotel Furniture') || text.includes('Гостиничная мебель')) {
       if (translations.index.hotelFurniture[lang]) {
         el.textContent = translations.index.hotelFurniture[lang];
+        setElementLanguage(el, lang);
       }
     } else if (text.includes('Սրճարանի Կահույք') || text.includes('Cafe Furniture') || text.includes('Мебель для кафе')) {
       if (translations.index.cafeFurniture[lang]) {
         el.textContent = translations.index.cafeFurniture[lang];
+        setElementLanguage(el, lang);
       }
     }
   });
@@ -907,18 +1004,25 @@ function updateIndexPage() {
   // Furniture descriptions
   const furnitureDescs = document.querySelectorAll('.blo1 p.m-b-20');
   furnitureDescs.forEach(p => {
+    // If this element is controlled by data-text (index-texts.js), skip
+    if (p.hasAttribute('data-text')) {
+      return;
+    }
     const text = p.textContent.trim();
     if (text.includes('Պրեմիում ճաշասեղաններ') || text.includes('Premium dining tables') || text.includes('Премиальные обеденные столы')) {
       if (translations.index.restaurantFurnitureDesc[lang]) {
         p.textContent = translations.index.restaurantFurnitureDesc[lang];
+        setElementLanguage(p, lang);
       }
     } else if (text.includes('Նրբագեղ հյուրանոցի') || text.includes('Elegant hotel') || text.includes('Элегантная гостиничная')) {
       if (translations.index.hotelFurnitureDesc[lang]) {
         p.textContent = translations.index.hotelFurnitureDesc[lang];
+        setElementLanguage(p, lang);
       }
     } else if (text.includes('Ոճային սրճարանի') || text.includes('Stylish cafe') || text.includes('Стильная мебель для кафе')) {
       if (translations.index.cafeFurnitureDesc[lang]) {
         p.textContent = translations.index.cafeFurnitureDesc[lang];
+        setElementLanguage(p, lang);
       }
     }
   });
@@ -930,15 +1034,38 @@ function updateIndexPage() {
     if (text.includes('Իմանալ Ավելին') || text.includes('Learn More') || text.includes('Узнать больше')) {
       if (translations.index.learnMore[lang]) {
         link.innerHTML = translations.index.learnMore[lang] + ' <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>';
+        setElementLanguage(link, lang);
       }
     }
   });
   
+  // Partners section heading (index page)
+  const partnersHeading = document.querySelector('.section-partners h3.tit3');
+  if (partnersHeading) {
+    const headingText = partnersHeading.textContent.trim();
+    if (headingText.includes('Մեր գործընկերները') || headingText.includes('Our Partners') || headingText.includes('Наши партнеры')) {
+      if (translations.about.ourPartners[lang]) {
+        partnersHeading.textContent = translations.about.ourPartners[lang];
+        partnersHeading.setAttribute('lang', lang);
+      }
+    }
+  }
+
+  // Partners section subtitle (index page)
+  const partnersSubtitle = document.querySelector('.section-partners .partners-subtitle');
+  if (partnersSubtitle) {
+    if (translations.about.partnersSubtitle[lang]) {
+      partnersSubtitle.textContent = translations.about.partnersSubtitle[lang];
+      partnersSubtitle.setAttribute('lang', lang);
+    }
+  }
+
   // Our Products heading
   const ourProductsHeading = document.querySelector('.title-section-ourmenu .tit5');
   if (ourProductsHeading && (ourProductsHeading.textContent.includes('Մեր Ապրանքները') || ourProductsHeading.textContent.includes('Our Products') || ourProductsHeading.textContent.includes('Наши товары'))) {
     if (translations.index.ourProducts[lang]) {
       ourProductsHeading.textContent = translations.index.ourProducts[lang];
+      setElementLanguage(ourProductsHeading, lang);
     }
   }
   
@@ -952,26 +1079,32 @@ function updateIndexPage() {
     if (text.includes('Աթոռներ') || text.includes('Chairs') || text.includes('Стулья')) {
       if (href.includes('#chairs') && translations.navbarCategories.chairs[lang]) {
         btn.textContent = translations.navbarCategories.chairs[lang];
+        setElementLanguage(btn, lang);
       }
     } else if (text.includes('Բարի աթոռներ') || text.includes('Bar Chairs') || text.includes('Барные стулья')) {
       if (href.includes('#bar-chairs') && translations.navbarCategories.barChairs[lang]) {
         btn.textContent = translations.navbarCategories.barChairs[lang];
+        setElementLanguage(btn, lang);
       }
     } else if (text.includes('Բազմոց-Բազկաթոռ') || text.includes('Sofas') || text.includes('Диваны')) {
       if (href.includes('#sofas') && translations.navbarCategories.sofas[lang]) {
         btn.textContent = translations.navbarCategories.sofas[lang];
+        setElementLanguage(btn, lang);
       }
     } else if (text.includes('Սեղաններ') || text.includes('Tables') || text.includes('Столы')) {
       if (href.includes('#tables') && translations.navbarCategories.tables[lang]) {
         btn.textContent = translations.navbarCategories.tables[lang];
+        setElementLanguage(btn, lang);
       }
     } else if (text.includes('Դրսի կահույք') || text.includes('Outdoor') || text.includes('Уличная мебель')) {
       if (href.includes('#outdoor') && translations.navbarCategories.outdoor[lang]) {
         btn.textContent = translations.navbarCategories.outdoor[lang];
+        setElementLanguage(btn, lang);
       }
     } else if (text.includes('Ֆուդ կորտի կահույք') || text.includes('Food Court') || text.includes('Мебель для фудкорта')) {
       if (href.includes('#food-court') && translations.navbarCategories.foodCourt[lang]) {
         btn.textContent = translations.navbarCategories.foodCourt[lang];
+        setElementLanguage(btn, lang);
       }
     }
   });
@@ -981,6 +1114,7 @@ function updateIndexPage() {
   if (watchText && (watchText.textContent.includes('Դիտե՛ք') || watchText.textContent.includes('Watch') || watchText.textContent.includes('Смотрите'))) {
     if (translations.index.watch[lang]) {
       watchText.textContent = translations.index.watch[lang];
+      setElementLanguage(watchText, lang);
     }
   }
   
@@ -989,6 +1123,7 @@ function updateIndexPage() {
   if (ourVideoHeading && (ourVideoHeading.textContent.includes('Մեր փոքրիկ հոլովակը') || ourVideoHeading.textContent.includes('Our Video') || ourVideoHeading.textContent.includes('Наше видео'))) {
     if (translations.index.ourVideo[lang]) {
       ourVideoHeading.textContent = translations.index.ourVideo[lang];
+      setElementLanguage(ourVideoHeading, lang);
     }
   }
   
@@ -1016,12 +1151,14 @@ function updateConsultationPage() {
   const consultationHeading = document.querySelector('.section-booking h3.tit3');
   if (consultationHeading && translations.consultation.consultationRequest[lang]) {
     consultationHeading.textContent = translations.consultation.consultationRequest[lang];
+    setElementLanguage(consultationHeading, lang);
   }
   
   // Description text - DIRECT UPDATE
   const descriptionText = document.querySelector('.section-booking p.txt14');
   if (descriptionText && translations.consultation.fillFormDescription[lang]) {
     descriptionText.textContent = translations.consultation.fillFormDescription[lang];
+    setElementLanguage(descriptionText, lang);
   }
   
   // Form labels - DIRECT UPDATE by position (order matters!)
@@ -1031,21 +1168,27 @@ function updateConsultationPage() {
   if (formLabels.length >= 6) {
     if (translations.consultation.preferredDate[lang]) {
       formLabels[0].textContent = translations.consultation.preferredDate[lang];
+      setElementLanguage(formLabels[0], lang);
     }
     if (translations.consultation.preferredTime[lang]) {
       formLabels[1].textContent = translations.consultation.preferredTime[lang];
+      setElementLanguage(formLabels[1], lang);
     }
     if (translations.consultation.projectSize[lang]) {
       formLabels[2].textContent = translations.consultation.projectSize[lang];
+      setElementLanguage(formLabels[2], lang);
     }
     if (translations.consultation.businessName[lang]) {
       formLabels[3].textContent = translations.consultation.businessName[lang];
+      setElementLanguage(formLabels[3], lang);
     }
     if (translations.consultation.phone[lang]) {
       formLabels[4].textContent = translations.consultation.phone[lang];
+      setElementLanguage(formLabels[4], lang);
     }
     if (translations.consultation.email[lang]) {
       formLabels[5].textContent = translations.consultation.email[lang];
+      setElementLanguage(formLabels[5], lang);
     }
   } else {
     // Fallback: match by text content
@@ -1053,16 +1196,22 @@ function updateConsultationPage() {
       const text = label.textContent.trim();
       if (text === 'Նախընտրելի Ամսաթիվ' || text === 'Preferred Date' || text === 'Предпочтительная дата') {
         label.textContent = translations.consultation.preferredDate[lang];
+        setElementLanguage(label, lang);
       } else if (text === 'Նախընտրելի Ժամ' || text === 'Preferred Time' || text === 'Предпочтительное время') {
         label.textContent = translations.consultation.preferredTime[lang];
+        setElementLanguage(label, lang);
       } else if (text === 'Նախագծի Չափ' || text === 'Project Size' || text === 'Размер проекта') {
         label.textContent = translations.consultation.projectSize[lang];
+        setElementLanguage(label, lang);
       } else if (text === 'Բիզնեսի Անուն' || text === 'Business Name' || text === 'Название компании') {
         label.textContent = translations.consultation.businessName[lang];
+        setElementLanguage(label, lang);
       } else if (text === 'Հեռախոս' || text === 'Phone' || text === 'Телефон') {
         label.textContent = translations.consultation.phone[lang];
+        setElementLanguage(label, lang);
       } else if (text === 'Էլ․ հասցե' || text === 'Email' || text === 'Электронная почта') {
         label.textContent = translations.consultation.email[lang];
+        setElementLanguage(label, lang);
       }
     });
   }
@@ -1087,6 +1236,7 @@ function updateConsultationPage() {
   const submitButton = document.querySelector('.section-booking button[type="submit"]');
   if (submitButton && translations.consultation.submitRequest[lang]) {
     submitButton.textContent = translations.consultation.submitRequest[lang];
+    setElementLanguage(submitButton, lang);
   }
   
   // Project Size dropdown options - DIRECT UPDATE by position
@@ -1099,30 +1249,37 @@ function updateConsultationPage() {
     if (options.length >= 7) {
       if (translations.consultation.projectSizeOptions.small[lang]) {
         options[0].textContent = translations.consultation.projectSizeOptions.small[lang];
+        setElementLanguage(options[0], lang);
         optionsUpdated = true;
       }
       if (translations.consultation.projectSizeOptions.medium[lang]) {
         options[1].textContent = translations.consultation.projectSizeOptions.medium[lang];
+        setElementLanguage(options[1], lang);
         optionsUpdated = true;
       }
       if (translations.consultation.projectSizeOptions.large[lang]) {
         options[2].textContent = translations.consultation.projectSizeOptions.large[lang];
+        setElementLanguage(options[2], lang);
         optionsUpdated = true;
       }
       if (translations.consultation.projectSizeOptions.veryLarge[lang]) {
         options[3].textContent = translations.consultation.projectSizeOptions.veryLarge[lang];
+        setElementLanguage(options[3], lang);
         optionsUpdated = true;
       }
       if (translations.consultation.projectSizeOptions.hotelLobby[lang]) {
         options[4].textContent = translations.consultation.projectSizeOptions.hotelLobby[lang];
+        setElementLanguage(options[4], lang);
         optionsUpdated = true;
       }
       if (translations.consultation.projectSizeOptions.restaurantChain[lang]) {
         options[5].textContent = translations.consultation.projectSizeOptions.restaurantChain[lang];
+        setElementLanguage(options[5], lang);
         optionsUpdated = true;
       }
       if (translations.consultation.projectSizeOptions.customProject[lang]) {
         options[6].textContent = translations.consultation.projectSizeOptions.customProject[lang];
+        setElementLanguage(options[6], lang);
         optionsUpdated = true;
       }
     } else {
@@ -1131,24 +1288,31 @@ function updateConsultationPage() {
         const text = option.textContent.trim();
         if (text === 'Փոքր (1-10 նստատեղ)' || text.includes('Small') || text.includes('Малый')) {
           option.textContent = translations.consultation.projectSizeOptions.small[lang];
+          setElementLanguage(option, lang);
           optionsUpdated = true;
         } else if (text === 'Միջին (11-25 նստատեղ)' || text.includes('Medium') || text.includes('Средний')) {
           option.textContent = translations.consultation.projectSizeOptions.medium[lang];
+          setElementLanguage(option, lang);
           optionsUpdated = true;
         } else if (text === 'Մեծ (26-50 նստատեղ)' || text.includes('Large') || text.includes('Большой')) {
           option.textContent = translations.consultation.projectSizeOptions.large[lang];
+          setElementLanguage(option, lang);
           optionsUpdated = true;
         } else if (text === 'Շատ Մեծ (50+ նստատեղ)' || text.includes('Very Large') || text.includes('Очень большой')) {
           option.textContent = translations.consultation.projectSizeOptions.veryLarge[lang];
+          setElementLanguage(option, lang);
           optionsUpdated = true;
         } else if (text === 'Հյուրանոցի Լոբի' || text.includes('Hotel Lobby') || text.includes('Гостиничное лобби')) {
           option.textContent = translations.consultation.projectSizeOptions.hotelLobby[lang];
+          setElementLanguage(option, lang);
           optionsUpdated = true;
         } else if (text === 'Ռեստորանների Ցանց' || text.includes('Restaurant Chain') || text.includes('Сеть ресторанов')) {
           option.textContent = translations.consultation.projectSizeOptions.restaurantChain[lang];
+          setElementLanguage(option, lang);
           optionsUpdated = true;
         } else if (text === 'Անհատական Նախագիծ' || text.includes('Custom Project') || text.includes('Индивидуальный проект')) {
           option.textContent = translations.consultation.projectSizeOptions.customProject[lang];
+          setElementLanguage(option, lang);
           optionsUpdated = true;
         }
       });
@@ -1199,86 +1363,184 @@ function updateAboutPage() {
   
   // Our Story heading
   const ourStoryHeading = document.querySelector('.bg2-pattern.p-t-116 h3.tit3');
-  if (ourStoryHeading && (ourStoryHeading.textContent.includes('Մեր Պատմությունը') || ourStoryHeading.textContent.includes('Our Story') || ourStoryHeading.textContent.includes('Наша история'))) {
-    if (translations.about.ourStory[lang]) {
-      ourStoryHeading.textContent = translations.about.ourStory[lang];
+  if (ourStoryHeading && !ourStoryHeading.hasAttribute('data-text')) {
+    if (ourStoryHeading.textContent.includes('Մեր Պատմությունը') || ourStoryHeading.textContent.includes('Our Story') || ourStoryHeading.textContent.includes('Наша история')) {
+      if (translations.about.ourStory[lang]) {
+        ourStoryHeading.textContent = translations.about.ourStory[lang];
+      }
     }
   }
   
   // Our Story description paragraph
   const ourStoryDesc = document.querySelector('.bg2-pattern.p-t-116 p.size32');
-  if (ourStoryDesc && (ourStoryDesc.textContent.includes('GAOS Furniture-ն') || ourStoryDesc.textContent.includes('GAOS Furniture has') || ourStoryDesc.textContent.includes('GAOS Furniture занимает'))) {
-    if (translations.about.ourStoryDescription[lang]) {
-      ourStoryDesc.textContent = translations.about.ourStoryDescription[lang];
+  if (ourStoryDesc && !ourStoryDesc.hasAttribute('data-text')) {
+    if (ourStoryDesc.textContent.includes('GAOS Furniture-ն') || ourStoryDesc.textContent.includes('GAOS Furniture has') || ourStoryDesc.textContent.includes('GAOS Furniture занимает')) {
+      if (translations.about.ourStoryDescription[lang]) {
+        ourStoryDesc.textContent = translations.about.ourStoryDescription[lang];
+      }
     }
   }
   
-  // Discover span (in video section)
-  const discoverSpan = document.querySelector('.section-video .tit2');
-  if (discoverSpan && (discoverSpan.textContent.includes('Բացահայտեք') || discoverSpan.textContent.includes('Discover') || discoverSpan.textContent.includes('Откройте'))) {
-    if (translations.about.discover[lang]) {
-      discoverSpan.textContent = translations.about.discover[lang];
+  // Watch span (in video section) - check for both "Դիտե՛ք" and "Բացահայտեք"
+  const watchSpan = document.querySelector('.section-video .tit2');
+  if (watchSpan) {
+    const text = watchSpan.textContent.trim();
+    if (text.includes('Դիտե՛ք') || text.includes('Բացահայտեք') || text.includes('Watch') || text.includes('Discover') || text.includes('Смотрите') || text.includes('Откройте')) {
+      if (translations.about.watch && translations.about.watch[lang]) {
+        watchSpan.textContent = translations.about.watch[lang];
+        setElementLanguage(watchSpan, lang);
+      } else if (translations.about.discover && translations.about.discover[lang]) {
+        watchSpan.textContent = translations.about.discover[lang];
+        setElementLanguage(watchSpan, lang);
+      }
     }
   }
   
-  // Our Showroom heading
-  const showroomHeading = document.querySelector('.section-video .tit4');
-  if (showroomHeading && (showroomHeading.textContent.includes('Մեր Ցուցասրահը') || showroomHeading.textContent.includes('Our Showroom') || showroomHeading.textContent.includes('Наш шоурум'))) {
-    if (translations.about.ourShowroom[lang]) {
-      showroomHeading.textContent = translations.about.ourShowroom[lang];
+  // Our Video heading - check for both "Մեր փոքրիկ հոլովակը" and "Մեր Ցուցասրահը"
+  const videoHeading = document.querySelector('.section-video .tit4');
+  if (videoHeading) {
+    const text = videoHeading.textContent.trim();
+    if (text.includes('Մեր փոքրիկ հոլովակը') || text.includes('Our Video') || text.includes('Наше видео')) {
+      if (translations.about.ourVideo && translations.about.ourVideo[lang]) {
+        videoHeading.textContent = translations.about.ourVideo[lang];
+        setElementLanguage(videoHeading, lang);
+      }
+    } else if (text.includes('Մեր Ցուցասրահը') || text.includes('Our Showroom') || text.includes('Наш шоурум')) {
+      if (translations.about.ourShowroom && translations.about.ourShowroom[lang]) {
+        videoHeading.textContent = translations.about.ourShowroom[lang];
+        setElementLanguage(videoHeading, lang);
+      }
     }
   }
   
   // Premium span (Materials section)
   const premiumSpan = document.querySelector('.wrap-text-delicious .tit2');
-  if (premiumSpan && (premiumSpan.textContent.includes('Պրեմիում') || premiumSpan.textContent.includes('Premium') || premiumSpan.textContent.includes('Премиум'))) {
-    if (translations.about.premium[lang]) {
-      premiumSpan.textContent = translations.about.premium[lang];
+  if (premiumSpan && !premiumSpan.hasAttribute('data-text')) {
+    if (premiumSpan.textContent.includes('Պրեմիում') || premiumSpan.textContent.includes('Premium') || premiumSpan.textContent.includes('Премиум')) {
+      if (translations.about.premium[lang]) {
+        premiumSpan.textContent = translations.about.premium[lang];
+      }
     }
   }
   
   // Materials heading
   const materialsHeading = document.querySelector('.wrap-text-delicious h3.tit3');
-  if (materialsHeading && (materialsHeading.textContent.includes('ՆՅՈՒԹԵՐ') || materialsHeading.textContent.includes('Materials') || materialsHeading.textContent.includes('Материалы'))) {
-    if (translations.about.materials[lang]) {
-      materialsHeading.textContent = translations.about.materials[lang];
+  if (materialsHeading && !materialsHeading.hasAttribute('data-text')) {
+    if (materialsHeading.textContent.includes('ՆՅՈՒԹԵՐ') || materialsHeading.textContent.includes('Materials') || materialsHeading.textContent.includes('Материалы')) {
+      if (translations.about.materials[lang]) {
+        materialsHeading.textContent = translations.about.materials[lang];
+      }
     }
   }
   
   // Materials description
   const materialsDesc = document.querySelector('.wrap-text-delicious p.size3');
-  if (materialsDesc && (materialsDesc.textContent.includes('Մենք օգտագործում ենք') || materialsDesc.textContent.includes('We use only the finest') || materialsDesc.textContent.includes('Мы используем только лучшие'))) {
-    if (translations.about.materialsDescription[lang]) {
-      materialsDesc.textContent = translations.about.materialsDescription[lang];
+  if (materialsDesc && !materialsDesc.hasAttribute('data-text')) {
+    if (materialsDesc.textContent.includes('Մենք օգտագործում ենք') || materialsDesc.textContent.includes('We use only the finest') || materialsDesc.textContent.includes('Мы используем только лучшие')) {
+      if (translations.about.materialsDescription[lang]) {
+        materialsDesc.textContent = translations.about.materialsDescription[lang];
+      }
     }
   }
   
   // Custom span (Solutions section)
   const customSpan = document.querySelector('.wrap-text-romantic .tit2');
-  if (customSpan && (customSpan.textContent.includes('Անհատական') || customSpan.textContent.includes('Custom') || customSpan.textContent.includes('Индивидуальный'))) {
-    if (translations.about.custom[lang]) {
-      customSpan.textContent = translations.about.custom[lang];
+  if (customSpan && !customSpan.hasAttribute('data-text')) {
+    if (customSpan.textContent.includes('Անհատական') || customSpan.textContent.includes('Custom') || customSpan.textContent.includes('Индивидуальный')) {
+      if (translations.about.custom[lang]) {
+        customSpan.textContent = translations.about.custom[lang];
+      }
     }
   }
   
   // Solutions heading
   const solutionsHeading = document.querySelector('.wrap-text-romantic h3.tit3');
-  if (solutionsHeading && (solutionsHeading.textContent.includes('Լուծումներ') || solutionsHeading.textContent.includes('Solutions') || solutionsHeading.textContent.includes('Решения'))) {
-    if (translations.about.solutions[lang]) {
-      solutionsHeading.textContent = translations.about.solutions[lang];
+  if (solutionsHeading && !solutionsHeading.hasAttribute('data-text')) {
+    if (solutionsHeading.textContent.includes('Լուծումներ') || solutionsHeading.textContent.includes('Solutions') || solutionsHeading.textContent.includes('Решения')) {
+      if (translations.about.solutions[lang]) {
+        solutionsHeading.textContent = translations.about.solutions[lang];
+      }
     }
   }
   
   // Custom Solutions description
   const customSolutionsDesc = document.querySelector('.wrap-text-romantic p.size3');
-  if (customSolutionsDesc && (customSolutionsDesc.textContent.includes('Յուրաքանչյուր հյուրասիրության') || customSolutionsDesc.textContent.includes('Every hospitality business') || customSolutionsDesc.textContent.includes('Каждый бизнес в сфере'))) {
-    if (translations.about.customSolutionsDescription[lang]) {
-      customSolutionsDesc.textContent = translations.about.customSolutionsDescription[lang];
+  if (customSolutionsDesc && !customSolutionsDesc.hasAttribute('data-text')) {
+    if (customSolutionsDesc.textContent.includes('Յուրաքանչյուր հյուրասիրության') || customSolutionsDesc.textContent.includes('Every hospitality business') || customSolutionsDesc.textContent.includes('Каждый бизнес в сфере')) {
+      if (translations.about.customSolutionsDescription[lang]) {
+        customSolutionsDesc.textContent = translations.about.customSolutionsDescription[lang];
+      }
+    }
+  }
+  
+  // Partners section - Our Partners span
+  const partnersSpan = document.querySelector('.section-partners .tit2');
+  if (partnersSpan && (partnersSpan.textContent.includes('Մեր Գործընկերները') || partnersSpan.textContent.includes('Our Partners') || partnersSpan.textContent.includes('Наши партнеры'))) {
+    if (translations.about.ourPartners[lang]) {
+      partnersSpan.textContent = translations.about.ourPartners[lang];
+    }
+  }
+  
+  // Partners section heading
+  const partnersHeading = document.querySelector('.section-partners h3.tit3');
+  if (partnersHeading && (partnersHeading.textContent.includes('Մեր գործընկերները') || partnersHeading.textContent.includes('Our Partners') || partnersHeading.textContent.includes('Наши партнеры'))) {
+    if (translations.about.ourPartners[lang]) {
+      partnersHeading.textContent = translations.about.ourPartners[lang];
+      partnersHeading.setAttribute('lang', lang);
+    }
+  }
+
+  // Partners section subtitle
+  const partnersSubtitle = document.querySelector('.section-partners .partners-subtitle');
+  if (partnersSubtitle) {
+    if (translations.about.partnersSubtitle[lang]) {
+      partnersSubtitle.textContent = translations.about.partnersSubtitle[lang];
+      partnersSubtitle.setAttribute('lang', lang);
     }
   }
   
   // Subscription section (at bottom of about page)
   updateSubscriptionForms();
+}
+
+// Update Collection page
+function updateCollectionPage() {
+  const lang = getCurrentLanguage();
+  
+  // Check if we're on collection page
+  const pathname = window.location.pathname;
+  const href = window.location.href;
+  const isCollectionPage = pathname.includes('collection.html') || href.includes('collection.html') || 
+                           document.querySelector('.section-gallery') !== null;
+  
+  if (!isCollectionPage) {
+    return;
+  }
+  
+  console.log('🌐 Translating Collection page for language:', lang);
+  
+  // Update filter button texts (the .filter-text divs inside .label-gallery buttons)
+  const categoryMap = {
+    '.new': 'new',
+    '.chairs': 'chairs',
+    '.bar-chairs': 'barChairs',
+    '.sofas': 'sofas',
+    '.tables': 'tables',
+    '.outdoor': 'outdoor',
+    '.food-court': 'foodCourt'
+  };
+  
+  Object.keys(categoryMap).forEach(selector => {
+    const buttons = document.querySelectorAll(`.label-gallery[data-filter="${selector}"]`);
+    const key = categoryMap[selector];
+    buttons.forEach(button => {
+      const filterText = button.querySelector('.filter-text');
+      if (filterText && translations.navbarCategories[key] && translations.navbarCategories[key][lang]) {
+        filterText.textContent = translations.navbarCategories[key][lang];
+        setElementLanguage(filterText, lang);
+      }
+    });
+  });
 }
 
 // Update Contact page
@@ -1369,29 +1631,64 @@ function updateContactPage() {
   const contactInfoLabels = document.querySelectorAll('.section-contact .txt5.p-b-10');
   contactInfoLabels.forEach((label) => {
     const text = label.textContent.trim();
+
+    let parentBlock = null;
+    if (typeof label.closest === 'function') {
+      parentBlock = label.closest('.flex-col-l');
+    }
+    if (!parentBlock) {
+      let current = label.parentElement;
+      while (current && !(current.classList && current.classList.contains('flex-col-l'))) {
+        current = current.parentElement;
+      }
+      parentBlock = current;
+    }
+
+    const valueElement = parentBlock ? parentBlock.querySelector('.txt23.size38') : null;
+
     if (text === 'Հասցե' || text === 'Address' || text === 'Адрес') {
       if (translations.contact.address[lang]) {
         label.textContent = translations.contact.address[lang];
+        setElementLanguage(label, lang);
+      }
+      if (valueElement && translations.footer.address[lang]) {
+        valueElement.textContent = translations.footer.address[lang];
+        setElementLanguage(valueElement, lang);
       }
     } else if (text === 'Զանգահարել Մեզ' || text === 'Call Us' || text === 'Позвоните нам') {
       if (translations.contact.callUs[lang]) {
         label.textContent = translations.contact.callUs[lang];
+        setElementLanguage(label, lang);
       }
     } else if (text === 'Ցուցասրահի Ժամեր' || text === 'Showroom Hours' || text === 'Часы работы шоурума') {
       if (translations.contact.showroomHours[lang]) {
         label.textContent = translations.contact.showroomHours[lang];
+        setElementLanguage(label, lang);
+      }
+      if (valueElement && translations.footer.mondaySaturday[lang]) {
+        const valueHTML = valueElement.innerHTML;
+        const timeMatch = valueHTML.match(/(\d+\s*:\s*\d+\s*-\s*\d+\s*:\s*\d+)/);
+        const timeText = timeMatch ? timeMatch[0].replace(/\s+/g, '').replace(/:/g, ':').replace(/-/g, ' - ') : null;
+        const timeDisplay = timeMatch ? valueHTML.substring(0, timeMatch.index + timeMatch[0].length).match(/(\d+:\d+\s*-\s*\d+:\d+)/)?.[0] || timeMatch[0].replace(/\s+/g, '') : null;
+        const finalTime = timeDisplay || '9:00 - 18:00';
+        valueElement.innerHTML = finalTime + ' <br/>' + translations.footer.mondaySaturday[lang];
+        setElementLanguage(valueElement, lang);
       }
     }
   });
   
   // Showroom hours text (Monday - Saturday)
   const showroomHoursText = document.querySelector('.section-contact .txt23.size38');
-  if (showroomHoursText && showroomHoursText.textContent.includes('Երկուշաբթի - Շաբաթ')) {
-    if (translations.footer.mondaySaturday[lang]) {
-      // Replace only the Monday-Saturday part, keep the time
-      const timeMatch = showroomHoursText.textContent.match(/(\d+:\d+\s*-\s*\d+:\d+)/);
-      if (timeMatch) {
-        showroomHoursText.innerHTML = timeMatch[0] + ' <br/>' + translations.footer.mondaySaturday[lang];
+  if (showroomHoursText) {
+    const hoursText = showroomHoursText.textContent;
+    if (hoursText.includes('Երկուշաբթի') || hoursText.includes('Monday') || hoursText.includes('Понедельник')) {
+      if (translations.footer.mondaySaturday[lang]) {
+        // Replace only the Monday-Saturday part, keep the time
+        const timeMatch = showroomHoursText.textContent.match(/(\d+:\d+\s*-\s*\d+:\d+)/);
+        if (timeMatch) {
+          showroomHoursText.innerHTML = timeMatch[0] + ' <br/>' + translations.footer.mondaySaturday[lang];
+          setElementLanguage(showroomHoursText, lang);
+        }
       }
     }
   }
@@ -1404,31 +1701,33 @@ function initializeTranslations() {
     const lang = getCurrentLanguage();
     console.log('🔄 Initializing translations for language:', lang);
     
-    updateNavbarMenu();
-    updateNavbarCategories();
-    updateFooter();
-    updateIndexPage();
-    updateConsultationPage();
-    updateAboutPage();
-    updateContactPage();
+    runTranslationStep('updateNavbarMenu', updateNavbarMenu);
+    runTranslationStep('updateNavbarCategories', updateNavbarCategories);
+    runTranslationStep('updateFooter', updateFooter);
+    runTranslationStep('updatePageTexts', updatePageTexts); // Update data-text elements
+    runTranslationStep('updateIndexPage', updateIndexPage);
+    runTranslationStep('updateConsultationPage', updateConsultationPage);
+    runTranslationStep('updateAboutPage', updateAboutPage);
+    runTranslationStep('updateContactPage', updateContactPage);
+    runTranslationStep('updateCollectionPage', updateCollectionPage);
     // Always update subscription forms (they appear on multiple pages)
-    updateSubscriptionForms();
+    runTranslationStep('updateSubscriptionForms', updateSubscriptionForms);
     
     // For reservation page, retry multiple times to catch late-loading elements
     if (window.location.pathname.includes('reservation.html') || document.querySelector('.section-booking')) {
       setTimeout(() => {
         console.log('🔄 Retry 1: consultation page translation...');
-        updateConsultationPage();
+        runTranslationStep('updateConsultationPage::retry1', updateConsultationPage);
       }, 500);
       
       setTimeout(() => {
         console.log('🔄 Retry 2: consultation page translation...');
-        updateConsultationPage();
+        runTranslationStep('updateConsultationPage::retry2', updateConsultationPage);
       }, 1500);
       
       setTimeout(() => {
         console.log('🔄 Retry 3: consultation page translation...');
-        updateConsultationPage();
+        runTranslationStep('updateConsultationPage::retry3', updateConsultationPage);
       }, 3000);
     }
     
@@ -1436,17 +1735,17 @@ function initializeTranslations() {
     if (window.location.pathname.includes('about.html') || document.querySelector('.bg2-pattern.p-t-116')) {
       setTimeout(() => {
         console.log('🔄 Retry 1: about page translation...');
-        updateAboutPage();
+        runTranslationStep('updateAboutPage::retry1', updateAboutPage);
       }, 500);
       
       setTimeout(() => {
         console.log('🔄 Retry 2: about page translation...');
-        updateAboutPage();
+        runTranslationStep('updateAboutPage::retry2', updateAboutPage);
       }, 1500);
       
       setTimeout(() => {
         console.log('🔄 Retry 3: about page translation...');
-        updateAboutPage();
+        runTranslationStep('updateAboutPage::retry3', updateAboutPage);
       }, 3000);
     }
     
@@ -1454,28 +1753,46 @@ function initializeTranslations() {
     if (window.location.pathname.includes('contact.html') || document.querySelector('.section-contact')) {
       setTimeout(() => {
         console.log('🔄 Retry 1: contact page translation...');
-        updateContactPage();
+        runTranslationStep('updateContactPage::retry1', updateContactPage);
       }, 500);
       
       setTimeout(() => {
         console.log('🔄 Retry 2: contact page translation...');
-        updateContactPage();
+        runTranslationStep('updateContactPage::retry2', updateContactPage);
       }, 1500);
       
       setTimeout(() => {
         console.log('🔄 Retry 3: contact page translation...');
-        updateContactPage();
+        runTranslationStep('updateContactPage::retry3', updateContactPage);
+      }, 3000);
+    }
+    
+    // For collection page, retry multiple times to catch late-loading elements
+    if (window.location.pathname.includes('collection.html') || document.querySelector('.section-gallery')) {
+      setTimeout(() => {
+        console.log('🔄 Retry 1: collection page translation...');
+        runTranslationStep('updateCollectionPage::retry1', updateCollectionPage);
+      }, 500);
+      
+      setTimeout(() => {
+        console.log('🔄 Retry 2: collection page translation...');
+        runTranslationStep('updateCollectionPage::retry2', updateCollectionPage);
+      }, 1500);
+      
+      setTimeout(() => {
+        console.log('🔄 Retry 3: collection page translation...');
+        runTranslationStep('updateCollectionPage::retry3', updateCollectionPage);
       }, 3000);
     }
     
     // Retry subscription forms (they appear on multiple pages)
     if (document.querySelector('.section-signup')) {
       setTimeout(() => {
-        updateSubscriptionForms();
+        runTranslationStep('updateSubscriptionForms::retry1', updateSubscriptionForms);
       }, 300);
       
       setTimeout(() => {
-        updateSubscriptionForms();
+        runTranslationStep('updateSubscriptionForms::retry2', updateSubscriptionForms);
       }, 1000);
     }
     

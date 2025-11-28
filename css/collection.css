@@ -1,5 +1,12 @@
 /* Collection Page Specific Styles */
 
+/* Hide social icons from navbar only when burger menu is visible (below 1048px) */
+@media (max-width: 1048px) {
+	.header-actions .social {
+		display: none !important;
+	}
+}
+
 /* Darken navbar background for better text readability - matching index.html */
 .wrap-menu-header {
 	background: #000000 !important;
@@ -92,6 +99,43 @@
 	width: 60%;
 	height: 2px;
 	background-color: #ec1d25;
+}
+
+/* Burger menu text size and spacing - matching index.html */
+.menu-sidebar .txt19 {
+	font-size: 20px !important;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+}
+
+/* Sidebar width - matching index.html */
+.sidebar {
+	width: 460px;
+}
+
+@media (max-width: 576px) {
+	.sidebar {
+		width: 340px;
+	}
+}
+
+/* Sidebar social icons - matching index.html */
+.sidebar-social {
+	display: flex;
+	justify-content: center;
+	gap: 25px;
+	font-size: 0;
+}
+
+.sidebar-social a {
+	font-size: 28px;
+	color: #111111;
+	transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-social a:hover {
+	color: #ec1d25;
+	transform: scale(1.05);
 }
 
 /* Button styling for "Դիտել ապրանքները" */
@@ -296,6 +340,120 @@
 	border-color: #ec1d25 !important;
 }
 
+/* Progressive category filter button sizing from 1200px down to 600px */
+@media (max-width: 1199px) {
+	.navbar-category-filters .navbar-filter-wrapper .navbar-filter-btn,
+	.wrap-menu-header .navbar-category-filters .navbar-filter-btn,
+	.wrap-menu-header:not(.scrolled) .navbar-filter-btn,
+	.wrap-menu-header.scrolled .navbar-filter-btn {
+		padding: 11px 16px !important;
+		font-size: 13px !important;
+		min-height: 38px !important;
+		line-height: 1.2 !important;
+		border-width: 2px !important;
+		border-radius: 5px !important;
+	}
+	
+	.navbar-category-filters {
+		padding: 7px 18px !important;
+	}
+}
+
+@media (max-width: 999px) {
+	.navbar-category-filters .navbar-filter-wrapper .navbar-filter-btn,
+	.wrap-menu-header .navbar-category-filters .navbar-filter-btn,
+	.wrap-menu-header:not(.scrolled) .navbar-filter-btn,
+	.wrap-menu-header.scrolled .navbar-filter-btn {
+		padding: 10px 14px !important;
+		font-size: 12px !important;
+		min-height: 36px !important;
+		line-height: 1.2 !important;
+		border-width: 2px !important;
+		border-radius: 5px !important;
+	}
+	
+	.navbar-category-filters {
+		padding: 6px 16px !important;
+	}
+	
+	.navbar-category-filters .navbar-filter-wrapper {
+		gap: 6px !important;
+	}
+}
+
+@media (max-width: 799px) {
+	.navbar-category-filters .navbar-filter-wrapper .navbar-filter-btn,
+	.wrap-menu-header .navbar-category-filters .navbar-filter-btn,
+	.wrap-menu-header:not(.scrolled) .navbar-filter-btn,
+	.wrap-menu-header.scrolled .navbar-filter-btn {
+		padding: 9px 12px !important;
+		font-size: 11px !important;
+		min-height: 34px !important;
+		line-height: 1.2 !important;
+		border-width: 1.5px !important;
+		border-radius: 4px !important;
+	}
+	
+	.navbar-category-filters {
+		padding: 5px 14px !important;
+	}
+	
+	.navbar-category-filters .navbar-filter-wrapper {
+		gap: 5px !important;
+	}
+}
+
+/* Hide break element on larger screens */
+.navbar-filter-break {
+	display: none;
+}
+
+@media (max-width: 904px) {
+	.navbar-category-filters {
+		height: auto !important;
+		min-height: 70px !important;
+		padding: 8px 20px !important;
+	}
+	
+	.navbar-category-filters .navbar-filter-wrapper {
+		flex-wrap: wrap !important;
+		justify-content: center !important;
+	}
+	
+	/* Break element to force new line after 4th button */
+	.navbar-category-filters .navbar-filter-wrapper .navbar-filter-break {
+		flex-basis: 100%;
+		width: 100%;
+		height: 0;
+		order: 4;
+		display: block;
+	}
+}
+
+@media (max-width: 599px) {
+	.navbar-category-filters .navbar-filter-wrapper .navbar-filter-btn,
+	.wrap-menu-header .navbar-category-filters .navbar-filter-btn,
+	.wrap-menu-header:not(.scrolled) .navbar-filter-btn,
+	.wrap-menu-header.scrolled .navbar-filter-btn {
+		padding: 8px 10px !important;
+		font-size: 10px !important;
+		min-height: 32px !important;
+		line-height: 1.2 !important;
+		border-width: 1.5px !important;
+		border-radius: 4px !important;
+	}
+	
+	.navbar-category-filters {
+		padding: 4px 12px !important;
+		height: auto !important;
+		min-height: 65px !important;
+	}
+	
+	.navbar-category-filters .navbar-filter-wrapper {
+		gap: 4px !important;
+	}
+}
+
 /* Logo Container with proper margins */
 .logo-container {
 	display: flex;
@@ -444,6 +602,231 @@ body .section-gallery .label-gallery:not(img) {
 	padding-bottom: 0 !important;
 	width: 100% !important;
 	gap: 8px !important;
+}
+
+/* Hide break element on larger screens */
+.filter-button-break {
+	display: none;
+}
+
+/* Below 940px: Wrap to 2 rows (4 on top, 3 on bottom) */
+@media (max-width: 939px) {
+	.wrap-label-gallery {
+		flex-wrap: wrap !important;
+		justify-content: center !important;
+		align-items: flex-end !important;
+	}
+	
+	/* Break element to force new line after 4th button */
+	.filter-button-break {
+		flex-basis: 100%;
+		width: 100%;
+		height: 0;
+		order: 4;
+		display: block;
+	}
+	
+	/* Adjust wrapper height for 2 rows */
+	.filter-buttons-wrapper {
+		height: auto !important;
+		min-height: 260px !important;
+		margin-top: -100px !important;
+		margin-bottom: 40px !important;
+	}
+	
+	/* Add gap between filter buttons and gallery */
+	.gallery-main-container {
+		margin-top: 40px !important;
+		padding-top: 40px !important;
+	}
+}
+
+/* Responsive filter button sizing - make them smaller based on page width */
+@media (max-width: 1200px) {
+	.label-gallery {
+		width: 130px !important;
+		height: 175px !important;
+		margin: 4px !important;
+	}
+	
+	.label-gallery.is-actived {
+		width: 155px !important;
+		height: 210px !important;
+	}
+	
+	body .section-gallery .label-gallery img {
+		height: 130px !important;
+	}
+	
+	body .section-gallery .label-gallery.is-actived img {
+		height: 160px !important;
+	}
+	
+	.filter-buttons-wrapper {
+		height: 230px !important;
+	}
+}
+
+@media (max-width: 992px) {
+	.label-gallery {
+		width: 110px !important;
+		height: 150px !important;
+		margin: 3px !important;
+	}
+	
+	.label-gallery.is-actived {
+		width: 130px !important;
+		height: 180px !important;
+	}
+	
+	body .section-gallery .label-gallery img {
+		height: 110px !important;
+	}
+	
+	body .section-gallery .label-gallery.is-actived img {
+		height: 140px !important;
+	}
+	
+	.filter-text {
+		font-size: 10px !important;
+		padding: 5px 3px !important;
+	}
+	
+	.filter-buttons-wrapper {
+		height: 200px !important;
+	}
+	
+	.wrap-label-gallery {
+		gap: 6px !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.label-gallery {
+		width: 90px !important;
+		height: 130px !important;
+		margin: 2px !important;
+	}
+	
+	.label-gallery.is-actived {
+		width: 110px !important;
+		height: 155px !important;
+	}
+	
+	body .section-gallery .label-gallery img {
+		height: 90px !important;
+	}
+	
+	body .section-gallery .label-gallery.is-actived img {
+		height: 120px !important;
+	}
+	
+	.filter-text {
+		font-size: 9px !important;
+		padding: 4px 2px !important;
+	}
+	
+	.wrap-label-gallery {
+		gap: 4px !important;
+	}
+	
+	.filter-buttons-wrapper {
+		height: 170px !important;
+	}
+}
+
+@media (max-width: 600px) {
+	.label-gallery {
+		width: 75px !important;
+		height: 110px !important;
+		margin: 2px !important;
+	}
+	
+	.label-gallery.is-actived {
+		width: 90px !important;
+		height: 130px !important;
+	}
+	
+	body .section-gallery .label-gallery img {
+		height: 75px !important;
+	}
+	
+	body .section-gallery .label-gallery.is-actived img {
+		height: 100px !important;
+	}
+	
+	.filter-text {
+		font-size: 8px !important;
+		padding: 3px 2px !important;
+	}
+	
+	.wrap-label-gallery {
+		gap: 3px !important;
+	}
+	
+	.filter-buttons-wrapper {
+		height: 150px !important;
+	}
+}
+
+/* Below 579px: Make buttons horizontal list style (image left, text right) */
+@media (max-width: 578px) {
+	.wrap-label-gallery {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		justify-content: flex-start !important;
+		gap: 8px !important;
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+		margin-top: 50px !important;
+	}
+	
+	.label-gallery {
+		width: 100% !important;
+		height: auto !important;
+		min-height: 60px !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: flex-start !important;
+		margin: 0 !important;
+		padding: 8px 12px !important;
+		border-width: 1px !important;
+	}
+	
+	.label-gallery.is-actived {
+		width: 100% !important;
+		height: auto !important;
+		min-height: 60px !important;
+		border-width: 2px !important;
+	}
+	
+	body .section-gallery .label-gallery img {
+		width: 50px !important;
+		height: 50px !important;
+		flex-shrink: 0 !important;
+		margin-right: 20px !important;
+		object-fit: cover !important;
+	}
+	
+	body .section-gallery .label-gallery.is-actived img {
+		width: 50px !important;
+		height: 50px !important;
+		margin-right: 20px !important;
+	}
+	
+	.filter-text {
+		font-size: 14px !important;
+		padding: 0 !important;
+		line-height: 1.4 !important;
+		text-align: left !important;
+		flex: 1 !important;
+	}
+	
+	.filter-buttons-wrapper {
+		height: auto !important;
+		min-height: auto !important;
+		padding-bottom: 20px !important;
+	}
 }
 
 /* Remove scrollbar styles since we don't need them */
@@ -932,6 +1315,7 @@ body .section-gallery .gallery-text h4 {
 	-o-transition: all 0.4s;
 	-moz-transition: all 0.4s;
 	transition: all 0.4s;
+	pointer-events: none;
 }
 
 .item-gallery-footer:hover:after {

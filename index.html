@@ -29,6 +29,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/admin-access.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -61,7 +62,7 @@
 						</div>
 					</div>
 
-					<!-- Menu and Language Switcher -->
+					<!-- Menu -->
 					<div class="wrap_menu p-l-15 p-l-0-xl flex-w flex-l-m">
 						<nav class="menu">
 							<ul class="main_menu">
@@ -86,15 +87,21 @@
 								</li>
 							</ul>
 						</nav>
-						
-						<!-- Language Switcher -->
-						<div class="language-switcher m-l-10">
+					</div>
+
+					<!-- Header Actions -->
+					<div class="header-actions flex-w flex-l-m p-r-20">
+						<div class="social flex-w flex-l-m m-r-20">
+							<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+							<a href="#"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
+						</div>
+						<div class="language-switcher">
 							<div class="custom-language-select">
-							<div class="selected-language" id="selectedLanguage">
-								<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
-								<span class="language-text">Հայ.</span>
-								<i class="fa fa-chevron-down"></i>
-							</div>
+								<div class="selected-language" id="selectedLanguage">
+									<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
+									<span class="language-text">Հայ.</span>
+									<i class="fa fa-chevron-down"></i>
+								</div>
 								<div class="language-options" id="languageOptions">
 									<div class="language-option" data-value="hy">
 										<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
@@ -111,13 +118,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<!-- Social -->
-					<div class="social flex-w flex-l-m p-r-20">
-						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
-
 						<button class="btn-show-sidebar m-l-33 trans-0-4"></button>
 					</div>
 				</div>
@@ -153,51 +153,10 @@
 			</li>
 		</ul>
 
-		<!-- - -->
-		<div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-			<!-- - -->
-			<h4 class="txt20 m-b-33">
-				Gallery
-			</h4>
-
-			<!-- Gallery -->
-			<div class="wrap-gallery-sidebar flex-w">
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-				</a>
-			</div>
+		<!-- Sidebar Social -->
+		<div class="sidebar-social t-center p-b-40">
+			<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			<a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
 		</div>
 	</aside>
 
@@ -212,7 +171,7 @@
 						</span>
 
 						<h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
-							GAOS Furniture
+							GAOS
 						</h2>
 
 					<div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
@@ -231,7 +190,7 @@
 						</span>
 
 						<h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
-							GAOS Furniture
+							GAOS
 						</h2>
 
 					<div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
@@ -250,7 +209,7 @@
 						</span>
 
 						<h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="rotateInUpRight">
-							GAOS Furniture
+							GAOS
 						</h2>
 
 					<div class="wrap-btn-slide1 animated visible-false" data-appear="rotateIn">
@@ -274,17 +233,15 @@
 			<div class="row">
 				<div class="col-md-6 p-t-45 p-b-30">
 					<div class="wrap-text-welcome t-center">
-						<span class="tit2 t-center">
-							Պրեմիում HORECA Կահույք
-						</span>
+						
 
-						<h3 class="tit3 t-center m-b-35 m-t-5">
-							Բարի Գալուստ GAOS
-						</h3>
+					<h3 class="tit3 t-center m-b-35 m-t-5 english-text" lang="en" style="font-family: 'Renogare', Arial, sans-serif !important;">
+						GAOS
+					</h3>
 
-						<p class="t-center m-b-22 size3 m-l-r-auto">
-							Մենք մասնագիտանում ենք բարձրորակ կահույքի լուծումներ տրամադրելու մեջ հյուրանոցների, ռեստորանների, սրճարանների և հյուրասիրության բիզնեսների համար: Մեր լայն տեսականին ներառում է ճաշասեղանների կահույք, նստատեղերի լուծումներ և առևտրային դասի կտորներ, որոնք նախագծված են ամրության և ոճի համար:
-						</p>
+					<h4 class="t-center m-b-20" style="color: #ec1d25; font-size: 1.2em;" data-text="welcomeSubtitle"></h4>
+
+					<p class="t-center m-b-22 size3 m-l-r-auto" data-text="welcomeDescription"></p>
 
 						<a href="about.html" class="txt4">
 							Մեր Պատմությունը
@@ -325,13 +282,9 @@
 						</div>
 
 						<div class="wrap-text-blo1 p-t-35">
-							<a href="collection.html"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-								Ռեստորանի Կահույք
-							</h4></a>
-
-							<p class="m-b-20">
-								Պրեմիում ճաշասեղաններ, աթոռներ և ռեստորանի նստատեղերի լուծումներ, որոնք նախագծված են հարմարավետության և ամրության համար բարձր երթևեկության միջավայրերում:
-							</p>
+							<a href="collection.html"><h4 class="txt5 color0-hov trans-0-4 m-b-13" data-text="restaurantFurnitureTitle"></h4></a>
+							
+							<p class="m-b-20" data-text="restaurantFurnitureDesc"></p>
 
 							<a href="collection.html" class="txt4">
 								Իմանալ Ավելին
@@ -349,13 +302,9 @@
 						</div>
 
 						<div class="wrap-text-blo1 p-t-35">
-							<a href="collection.html"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-								Հյուրանոցի Կահույք
-							</h4></a>
-
-							<p class="m-b-20">
-								Նրբագեղ հյուրանոցի կահույք, ներառյալ լոբիի նստատեղեր, հյուրերի սենյակների կահույք և հյուրասիրության լուծումներ պրեմիում հյուրանոցների համար:
-							</p>
+							<a href="collection.html"><h4 class="txt5 color0-hov trans-0-4 m-b-13" data-text="hotelFurnitureTitle"></h4></a>
+							
+							<p class="m-b-20" data-text="hotelFurnitureDesc"></p>
 
 							<a href="collection.html" class="txt4">
 								Իմանալ Ավելին
@@ -373,13 +322,9 @@
 						</div>
 
 						<div class="wrap-text-blo1 p-t-35">
-							<a href="collection.html"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-								Սրճարանի Կահույք
-							</h4></a>
-
-							<p class="m-b-20">
-								Ոճային սրճարանի կահույք, ներառյալ բարի աթոռներ, սրճի սեղաններ և կազուալ ճաշի լուծումներ, որոնք կատարյալ են սրճարանների և բիստրոների համար:
-							</p>
+							<a href="collection.html"><h4 class="txt5 color0-hov trans-0-4 m-b-13" data-text="cafeFurnitureTitle"></h4></a>
+							
+							<p class="m-b-20" data-text="cafeFurnitureDesc"></p>
 
 							<a href="collection.html" class="txt4">
 								Իմանալ Ավելին
@@ -639,8 +584,98 @@
 		</div>
 	</section>
 
-
-
+	<!-- Partners -->
+	<section class="section-partners bg1-pattern p-t-80 p-b-80">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 t-center m-b-50">
+					
+					<h3 class="tit3 t-center m-t-5" lang="hy" style="color: #ec1d25;">
+						Մեր գործընկերները
+					</h3>
+					<p class="partners-subtitle t-center m-t-15" lang="hy">
+						Մեզ վստահում են մի շարք առաջատար սննդի և հյուրանոցային օբյեկտներ
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="partners-slider">
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/1.png" alt="Partner 1" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/2.png" alt="Partner 2" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/3.png" alt="Partner 3" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/4.png" alt="Partner 4" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/5.png" alt="Partner 5" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/6.png" alt="Partner 6" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/7.png" alt="Partner 7" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/8.png" alt="Partner 8" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/9.png" alt="Partner 9" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/10.png" alt="Partner 10" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/11.png" alt="Partner 11" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/12.png" alt="Partner 12" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/13.png" alt="Partner 13" class="partner-logo">
+							</div>
+						</div>
+						<div class="item-partner">
+							<div class="wrap-pic-partner">
+								<img src="images/partners/14.png" alt="Partner 14" class="partner-logo">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<!-- Sign up -->
 	<div class="section-signup bg1-pattern p-t-85 p-b-85">
@@ -678,15 +713,15 @@
 							ք․ Երևան, Կարապետ Ուլնեցի 58/20Բ
 						</li>
 
-						<li class="txt14 m-b-14">
-							<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-							+374 (91) 01 94 49
-						</li>
+					<li class="txt14 m-b-14">
+						<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+						<a href="tel:+37491019449" class="color0-hov trans-0-4">+374 (91) 01 94 49</a>
+					</li>
 
-						<li class="txt14 m-b-14">
-							<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-							gaosfurniture@gmail.com
-						</li>
+					<li class="txt14 m-b-14">
+						<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+						<a href="mailto:gaosfurniture@gmail.com" class="color0-hov trans-0-4">gaosfurniture@gmail.com</a>
+					</li>
 					</ul>
 
 					<!-- - -->
@@ -814,7 +849,7 @@
 					</div>
 
 					<div class="txt17 p-r-20 p-t-5 p-b-5">
-						2024 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է <a href="#" target="_blank">Touch Web Agency</a>-ի կողմից
+						2024 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է <a href="https://touchweb.am" target="_blank">Touch Web Agency</a>-ի կողմից
 					</div>
 				</div>
 			</div>
@@ -865,6 +900,149 @@
 	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
 	<script type="text/javascript" src="js/slick-custom.js"></script>
 <!--===============================================================================================-->
+	<!-- Partners Slider Styles -->
+	<style>
+		.section-partners {
+			background-color: #f8f9fa;
+		}
+
+		.section-partners h3.tit3 {
+			color: #ec1d25;
+			font-size: 2.5rem;
+		}
+
+		.partners-subtitle {
+			color: #000000;
+			font-size: 1.1rem;
+			font-weight: 400;
+			line-height: 1.6;
+			margin-top: 15px;
+		}
+
+		@media (max-width: 992px) {
+			.section-partners h3.tit3 {
+				font-size: 2rem;
+			}
+			.partners-subtitle {
+				font-size: 1rem;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.section-partners h3.tit3 {
+				font-size: 1.75rem;
+			}
+			.partners-subtitle {
+				font-size: 0.95rem;
+			}
+		}
+
+		@media (max-width: 576px) {
+			.section-partners h3.tit3 {
+				font-size: 1.5rem;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.section-partners h3.tit3 {
+				font-size: 1.25rem;
+			}
+		}
+
+		.partners-slider {
+			margin: 0 auto;
+			max-width: 1200px;
+		}
+
+		.item-partner {
+			padding: 10px 15px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.wrap-pic-partner {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 160px;
+			width: 100%;
+			transition: all 0.3s ease;
+		}
+
+		.partner-logo {
+			max-width: 180px;
+			max-height: 140px;
+			width: auto;
+			height: auto;
+			object-fit: contain;
+			filter: none;
+			opacity: 0.85;
+			transition: all 0.3s ease;
+		}
+
+		.item-partner:hover .partner-logo {
+			filter: none;
+			opacity: 1;
+			transform: scale(1.05);
+		}
+
+		.partners-slider .slick-track {
+			display: flex;
+			align-items: center;
+		}
+
+		.partners-slider .slick-slide {
+			height: auto;
+		}
+
+		@media (max-width: 768px) {
+			.item-partner {
+				padding: 5px 8px;
+			}
+
+			.wrap-pic-partner {
+				height: 110px;
+			}
+
+			.partner-logo {
+				max-width: 140px;
+				max-height: 100px;
+			}
+		}
+
+		@media (max-width: 576px) {
+			.item-partner {
+				padding: 0 10px;
+			}
+			
+			.partners-slider {
+				margin: 0 10px;
+			}
+
+			.partners-slider .slick-list {
+				margin: 0 -10px;
+			}
+
+			.partners-slider .item-partner {
+				padding: 0 10px;
+			}
+
+			.wrap-pic-partner {
+				height: auto;
+				width: 100%;
+			}
+
+			.partner-logo {
+				width: 100%;
+				height: auto;
+				max-width: 100%;
+				max-height: none;
+				object-fit: contain;
+			}
+		}
+	</style>
+<!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/parallax100/parallax100.js"></script>
 	<script type="text/javascript">
         $('.parallax100').parallax100();
@@ -875,8 +1053,10 @@
 	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script src="js/texts/index-texts.js"></script>
 	<script src="js/navbar-footer-translations.js"></script>
 	<script type="module" src="js/subscription-handler.js"></script>
+	<script src="js/admin-access.js"></script>
 	
 	<!-- Navbar scroll effect -->
 	<script>
@@ -963,17 +1143,62 @@
 				}
 			}
 			
-			// Configure slider for auto-play and mouse interaction
-			$('.slick1').slick({
+			// Initialize Partners Slider - must be after slick-custom.js runs
+			if (typeof $.fn.slick !== 'undefined') {
+				$('.partners-slider').slick({
+				slidesToShow: 7,
+				slidesToScroll: 1,
 				autoplay: true,
 				autoplaySpeed: 3000,
+				speed: 800,
 				arrows: false,
-				dots: true,
+				dots: false,
 				pauseOnHover: true,
-				pauseOnFocus: true,
+				pauseOnFocus: false,
 				swipe: true,
-				draggable: true
-			});
+				draggable: true,
+				touchMove: true,
+				swipeToSlide: true,
+				touchThreshold: 5,
+				infinite: true,
+				cssEase: 'ease-in-out',
+				useTransform: true,
+				edgeFriction: 0.35,
+				waitForAnimate: false,
+				responsive: [
+						{
+							breakpoint: 1400,
+							settings: {
+								slidesToShow: 6
+							}
+						},
+						{
+							breakpoint: 1200,
+							settings: {
+								slidesToShow: 5
+							}
+						},
+						{
+							breakpoint: 992,
+							settings: {
+								slidesToShow: 4
+							}
+						},
+						{
+							breakpoint: 768,
+							settings: {
+								slidesToShow: 3
+							}
+						},
+						{
+							breakpoint: 576,
+							settings: {
+								slidesToShow: 1
+							}
+						}
+					]
+				});
+			}
 
 			// Set default active state for navbar category filters
 			$('.navbar-category-filters .navbar-filter-btn[data-filter=".new"]').addClass('is-active');

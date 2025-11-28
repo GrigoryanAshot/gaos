@@ -144,7 +144,7 @@
     $(window).on('scroll',function(){
         var scrollTop = $(this).scrollTop();
         
-        if(scrollTop > 50 && $(this).width() > 992) {
+        if(scrollTop > 50) {
             if(!$(header).hasClass('header-fixed')) {
                 $(logo).fadeOut(150, function() {
                     $(this).attr('src',linkLogo2).fadeIn(150);

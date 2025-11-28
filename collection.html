@@ -30,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/collection.css">
+	<link rel="stylesheet" type="text/css" href="css/admin-access.css">
 <!--===============================================================================================-->
 	<!-- Armenian and English Fonts - Using Local Fonts -->
 <!--===============================================================================================-->
@@ -97,13 +98,14 @@
 							<div class="navbar-filter-btn armenian-text" data-filter=".chairs">Աթոռներ</div>
 							<div class="navbar-filter-btn armenian-text" data-filter=".bar-chairs">Բարի աթոռներ</div>
 							<div class="navbar-filter-btn armenian-text" data-filter=".sofas">Բազմոց-Բազկաթոռ</div>
+							<div class="navbar-filter-break"></div>
 							<div class="navbar-filter-btn armenian-text" data-filter=".tables">Սեղաններ</div>
 							<div class="navbar-filter-btn armenian-text" data-filter=".outdoor">Դրսի կահույք</div>
 							<div class="navbar-filter-btn armenian-text" data-filter=".food-court">Ֆուդ կորտի կահույք</div>
 						</div>
 					</div>
 
-					<!-- Menu and Language Switcher -->
+					<!-- Menu -->
 					<div class="wrap_menu p-l-15 p-l-0-xl flex-w flex-l-m">
 						<nav class="menu">
 							<ul class="main_menu">
@@ -128,15 +130,21 @@
 								</li>
 							</ul>
 						</nav>
-						
-						<!-- Language Switcher -->
-						<div class="language-switcher m-l-10">
+					</div>
+
+					<!-- Header Actions -->
+					<div class="header-actions flex-w flex-l-m p-r-20">
+						<div class="social flex-w flex-l-m m-r-20">
+							<a href="#" id="navbar-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+							<a href="#" id="navbar-instagram"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
+						</div>
+						<div class="language-switcher">
 							<div class="custom-language-select">
-							<div class="selected-language" id="selectedLanguage">
-								<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
-								<span class="language-text">Հայ.</span>
-								<i class="fa fa-chevron-down"></i>
-							</div>
+								<div class="selected-language" id="selectedLanguage">
+									<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
+									<span class="language-text">Հայ.</span>
+									<i class="fa fa-chevron-down"></i>
+								</div>
 								<div class="language-options" id="languageOptions">
 									<div class="language-option" data-value="hy">
 										<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
@@ -153,13 +161,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<!-- Social -->
-					<div class="social flex-w flex-l-m p-r-20">
-					<a href="#" id="navbar-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-					<a href="#" id="navbar-instagram"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
-
 						<button class="btn-show-sidebar m-l-33 trans-0-4"></button>
 					</div>
 				</div>
@@ -193,60 +194,12 @@
 			<li class="t-center m-b-33">
 				<a href="contact.html" class="txt19" lang="hy">Կապ մեզ հետ</a>
 			</li>
-
-			<li class="t-center">
-				<!-- Button3 -->
-				<a href="reservation.html" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto" lang="hy">
-					Խորհրդատվություն
-				</a>
-			</li>
 		</ul>
 
-		<!-- - -->
-		<div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-			<!-- - -->
-			<h4 class="txt20 m-b-33" lang="hy">
-				Պատկերասրահ
-			</h4>
-
-			<!-- Gallery -->
-			<div class="wrap-gallery-sidebar flex-w">
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-				</a>
-			</div>
+		<!-- Sidebar Social -->
+		<div class="sidebar-social t-center p-b-40">
+			<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			<a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
 		</div>
 	</aside>
 
@@ -275,6 +228,8 @@
 				<img src="images/icons/furniture-sofas.jpg" alt="Sofas" class="filter-icon">
 				<div class="filter-text">Բազմոց-Բազկաթոռ</div>
 			</button>
+			
+			<div class="filter-button-break"></div>
 
 			<button class="label-gallery txt26 trans-0-4" data-filter=".tables">
 				<img src="images/icons/furniture-tables.jpg" alt="Tables" class="filter-icon">
@@ -320,12 +275,12 @@
 
 						<li class="txt14 m-b-14">
 							<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-							+374 (91) 01 94 49
+						<a href="tel:+37491019449" class="color0-hov trans-0-4">+374 (91) 01 94 49</a>
 						</li>
 
 						<li class="txt14 m-b-14">
 							<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-							gaosfurniture@gmail.com
+						<a href="mailto:gaosfurniture@gmail.com" class="color0-hov trans-0-4">gaosfurniture@gmail.com</a>
 						</li>
 					</ul>
 
@@ -454,7 +409,7 @@
 					</div>
 
 					<div class="txt17 p-r-20 p-t-5 p-b-5">
-						2024 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է <a href="#" target="_blank">Touch Web Agency</a>-ի կողմից
+						2024 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է <a href="https://touchweb.am" target="_blank">Touch Web Agency</a>-ի կողմից
 					</div>
 				</div>
 			</div>
@@ -517,6 +472,7 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<script src="js/navbar-footer-translations.js"></script>
+	<script src="js/admin-access.js"></script>
 	
 	<!-- Force gallery centering on page load -->
 	<script>
@@ -542,10 +498,15 @@
 		// Use main.js scroll handler from index.html (it's already loaded)
 		// But also add .scrolled class for collection page CSS
 		$(window).scroll(function() {
+			var windowWidth = $(window).width();
+			var isMobileView = windowWidth <= 578; // When categories are stacked vertically
+			
 			if ($(window).scrollTop() > 50) {
 				$('.wrap-menu-header').addClass('scrolled');
-				// Add extra area after 300px scroll (shows category filters dropdown)
-				if ($(window).scrollTop() > 300) {
+				// Add extra area after scroll (shows category filters dropdown)
+				// Use 500px threshold for mobile (stacked categories), 300px for desktop
+				var scrollThreshold = isMobileView ? 500 : 300;
+				if ($(window).scrollTop() > scrollThreshold) {
 					$('.wrap-menu-header').addClass('extra-area');
 				} else {
 					$('.wrap-menu-header').removeClass('extra-area');
@@ -1443,10 +1404,17 @@
 			});
 
 			// Set default active state for navbar category filters
-			$('.navbar-category-filters .navbar-filter-btn[data-filter=".new"]').addClass('is-active');
+			setTimeout(function() {
+				$('.navbar-category-filters .navbar-filter-btn[data-filter=".new"]').addClass('is-active');
+			}, 500);
 			
-			// Navbar category filter functionality
-			$('.navbar-category-filters .navbar-filter-btn').click(function() {
+			// Navbar category filter functionality - use event delegation
+			$(document).on('click', '.navbar-category-filters .navbar-filter-btn', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				console.log('🔵 Navbar category button clicked');
+				
 				// Remove active class from all navbar buttons
 				$('.navbar-category-filters .navbar-filter-btn').removeClass('is-active');
 				// Add active class to clicked button
@@ -1454,14 +1422,66 @@
 				
 				// Get the filter value
 				var filter = $(this).data('filter');
+				console.log('🔵 Filter:', filter);
 				
-				// Scroll to 300px point smoothly
-				$('html, body').animate({
-					scrollTop: 400
-				}, 800);
+				// Check if dropdown is visible (extra-area class exists)
+				var isDropdownVisible = $('.wrap-menu-header').hasClass('extra-area');
+				var currentScroll = $(window).scrollTop();
+				console.log('🔵 Dropdown visible:', isDropdownVisible);
+				console.log('🔵 Current scroll position:', currentScroll);
 				
-				// Trigger the same filter as main category buttons
-				$('.filter-buttons-wrapper .label-gallery[data-filter="' + filter + '"]').click();
+				// Trigger the same filter as main category buttons first
+				var mainButton = $('.filter-buttons-wrapper .label-gallery[data-filter="' + filter + '"]');
+				if (mainButton.length) {
+					mainButton.click();
+				}
+				
+				// Then handle scrolling after a small delay to ensure filter is applied
+				setTimeout(function() {
+					if (isDropdownVisible) {
+						// If dropdown is visible, scroll to a fixed position (gallery start + small offset)
+						// Get the position of the gallery container
+						var galleryContainer = $('.gallery-main-container');
+						var filterButtonsWrapper = $('.filter-buttons-wrapper');
+						
+						if (galleryContainer.length) {
+							var galleryTop = galleryContainer.offset().top;
+							var newScroll = galleryTop - 150; // 100px above gallery to show dropdown
+							console.log('🔵 Scrolling to fixed position:', newScroll, '(gallery top:', galleryTop, ')');
+							$('html, body').stop(true, true).animate({
+								scrollTop: newScroll
+							}, 300);
+						} else if (filterButtonsWrapper.length) {
+							// Fallback: use filter buttons position
+							var filterTop = filterButtonsWrapper.offset().top;
+							var newScroll = filterTop - 150; // Position to show dropdown
+							console.log('🔵 Scrolling to fixed position:', newScroll, '(filter top:', filterTop, ')');
+							$('html, body').stop(true, true).animate({
+								scrollTop: newScroll
+							}, 300);
+						}
+					} else {
+						// If dropdown is not visible, use original behavior
+						var windowWidth = $(window).width();
+						var isMobileView = windowWidth <= 578;
+						console.log('🔵 Dropdown not visible, windowWidth:', windowWidth, 'isMobileView:', isMobileView);
+						
+						// Scroll to show dropdown - different behavior for mobile vs desktop
+						if (isMobileView) {
+							// For mobile: scroll to 20px quickly
+							console.log('🔵 Mobile: scrolling to 20px');
+							$('html, body').stop(true, true).animate({
+								scrollTop: 20
+							}, 20);
+						} else {
+							// For desktop: scroll to 400px smoothly
+							console.log('🔵 Desktop: scrolling to 400px');
+							$('html, body').stop(true, true).animate({
+								scrollTop: 400
+							}, 800);
+						}
+					}
+				}, 100);
 			});
 
 			// Infinite scroll implementation with improved footer detection
@@ -1724,7 +1744,5 @@
 				});
 			});
 		});
-	</script>
-
-</body>
+	</body>
 </html>

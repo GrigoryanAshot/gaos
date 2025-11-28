@@ -29,6 +29,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/admin-access.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -61,7 +62,7 @@
 						</div>
 					</div>
 
-					<!-- Menu and Language Switcher -->
+					<!-- Menu -->
 					<div class="wrap_menu p-l-15 p-l-0-xl flex-w flex-l-m">
 						<nav class="menu">
 							<ul class="main_menu">
@@ -86,15 +87,21 @@
 								</li>
 							</ul>
 						</nav>
-						
-						<!-- Language Switcher -->
-						<div class="language-switcher m-l-10">
+					</div>
+
+					<!-- Header Actions -->
+					<div class="header-actions flex-w flex-l-m p-r-20">
+						<div class="social flex-w flex-l-m m-r-20">
+							<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+							<a href="#"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
+						</div>
+						<div class="language-switcher">
 							<div class="custom-language-select">
-							<div class="selected-language" id="selectedLanguage">
-								<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
-								<span class="language-text">Հայ.</span>
-								<i class="fa fa-chevron-down"></i>
-							</div>
+								<div class="selected-language" id="selectedLanguage">
+									<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
+									<span class="language-text">Հայ.</span>
+									<i class="fa fa-chevron-down"></i>
+								</div>
 								<div class="language-options" id="languageOptions">
 									<div class="language-option" data-value="hy">
 										<img src="images/flags/armenia.png" alt="Armenia" class="flag-icon">
@@ -111,13 +118,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<!-- Social -->
-					<div class="social flex-w flex-l-m p-r-20">
-						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
-
 						<button class="btn-show-sidebar m-l-33 trans-0-4"></button>
 					</div>
 				</div>
@@ -153,51 +153,10 @@
 			</li>
 		</ul>
 
-		<!-- - -->
-		<div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-			<!-- - -->
-			<h4 class="txt20 m-b-33">
-				Gallery
-			</h4>
-
-			<!-- Gallery -->
-			<div class="wrap-gallery-sidebar flex-w">
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-				</a>
-			</div>
+		<!-- Sidebar Social -->
+		<div class="sidebar-social t-center p-b-40">
+			<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			<a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
 		</div>
 	</aside>
 
@@ -346,12 +305,12 @@
 
 						<li class="txt14 m-b-14">
 							<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-							+374 (91) 01 94 49
+						<a href="tel:+37491019449" class="color0-hov trans-0-4">+374 (91) 01 94 49</a>
 						</li>
 
 						<li class="txt14 m-b-14">
 							<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-							gaosfurniture@gmail.com
+						<a href="mailto:gaosfurniture@gmail.com" class="color0-hov trans-0-4">gaosfurniture@gmail.com</a>
 						</li>
 					</ul>
 
@@ -480,7 +439,7 @@
 					</div>
 
 					<div class="txt17 p-r-20 p-t-5 p-b-5">
-						2024 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է <a href="#" target="_blank">Touch Web Agency</a>-ի կողմից
+						2024 GAOS Furniture. Բոլոր իրավունքները պաշտպանված են  |  Կայքը պատրաստված է <a href="https://touchweb.am" target="_blank">Touch Web Agency</a>-ի կողմից
 					</div>
 				</div>
 			</div>
@@ -527,6 +486,7 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<script src="js/navbar-footer-translations.js"></script>
+	<script src="js/admin-access.js"></script>
 	
 	<!-- Navbar scroll effect -->
 	<script>
