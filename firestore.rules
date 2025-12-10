@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ============================================
+    // PUBLIC READ - ADMIN WRITE
+    // ============================================
+    
+    // Furniture items - public read, admin write
+    match /furniture/{itemId} {
+      allow read: if true; // Anyone can read furniture items
+      allow create, update, delete: if request.auth != null; // Only authenticated admins can write
+    }
+    
+    // Categories - public read, admin write
+    match /categories/{categoryId} {
+      allow read: if true; // Anyone can read categories
+      allow create, update, delete: if request.auth != null; // Only authenticated admins can write
+    }
+    
+    // Types - public read, admin write
+    match /types/{typeId} {
+      allow read: if true; // Anyone can read types
+      allow create, update, delete: if request.auth != null; // Only authenticated admins can write
+    }
+    
+    // Settings - public read, admin write
+    match /settings/{settingId} {
+      allow read: if true; // Anyone can read settings
+      allow create, update, delete: if request.auth != null; // Only authenticated admins can write
+    }
+    
+    // ============================================
+    // SUBSCRIPTIONS - PUBLIC WRITE WITH VALIDATION
+    // ============================================
+    
+    // Subscriptions - anyone can create (for newsletter signup)
+    match /subscriptions/{subscriptionId} {
+      allow read: if request.auth != null; // Only admins can read subscriptions
+      allow delete: if request.auth != null; // Only admins can delete subscriptions
+      
+      // Allow public creation with validation
+      allow create: if 
+        // Email must be provided
+        request.resource.data.email is string &&
+        // Email must contain @ symbol
+        request.resource.data.email.matches('.*@.*') &&
+        // Email must be between 5-100 characters
+        request.resource.data.email.size() >= 5 &&
+        request.resource.data.email.size() <= 100 &&
+        // Must have subscribedAt timestamp
+        request.resource.data.subscribedAt is timestamp &&
+        // Must have status field set to 'active'
+        request.resource.data.status == 'active';
+      
+      // Only admins can update subscription status
+      allow update: if request.auth != null;
+    }
+    
+  }
+}
+
