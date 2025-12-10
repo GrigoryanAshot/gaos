@@ -8,7 +8,7 @@
 	
 	let adminCodeAttempts = 0;
 	let currentAdminCode = null;
-	const ADMIN_EMAIL = 'gaoswebsite@gmail.com';
+	const ADMIN_EMAIL = 'gaosfurniture@gmail.com';
 	
 	// Generate random 6-digit code
 	function generateAdminCode() {

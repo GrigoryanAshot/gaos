@@ -30,7 +30,7 @@ const createTransporter = () => {
 	return nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-			user: process.env.EMAIL_USER || 'gaoswebsite@gmail.com',
+			user: process.env.EMAIL_USER || 'gaosfurniture@gmail.com',
 			pass: process.env.EMAIL_PASS // App password for Gmail
 		}
 	});
@@ -53,7 +53,7 @@ app.post('/api/send-admin-code', async (req, res) => {
 		
 		// Email content
 		const mailOptions = {
-			from: process.env.EMAIL_USER || 'gaoswebsite@gmail.com',
+			from: process.env.EMAIL_USER || 'gaosfurniture@gmail.com',
 			to: email,
 			subject: 'GAOS Admin Access Code',
 			html: `
@@ -96,8 +96,8 @@ app.get('/api/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
 	console.log(`🚀 Admin Email Server running on http://localhost:${PORT}`);
-	console.log(`📧 Configured to send emails from: ${process.env.EMAIL_USER || 'gaoswebsite@gmail.com'}`);
+	console.log(`📧 Configured to send emails from: ${process.env.EMAIL_USER || 'gaosfurniture@gmail.com'}`);
 	console.log(`\n⚠️  Make sure to create a .env file with:`);
-	console.log(`   EMAIL_USER=gaoswebsite@gmail.com`);
+	console.log(`   EMAIL_USER=gaosfurniture@gmail.com`);
 	console.log(`   EMAIL_PASS=your_app_password_here\n`);
 });
