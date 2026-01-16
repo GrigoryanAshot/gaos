@@ -18,8 +18,24 @@
 	<link rel="preload" as="style" href="css/index.css">
 	<link rel="preload" as="script" href="vendor/jquery/jquery-3.2.1.min.js">
 	<!-- Preload critical images for faster loading -->
-	<link rel="preload" as="image" href="images/slide1-01.webp" type="image/webp" fetchpriority="high">
+	<link rel="preload" as="image" href="images/slide1-01-mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
+	<link rel="preload" as="image" href="images/slide1-01.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
 	<link rel="preload" as="image" href="images/icons/logo.png" fetchpriority="high">
+	<!-- Critical CSS inline for faster mobile rendering -->
+	<style>
+		/* Critical above-the-fold styles */
+		body{margin:0;padding:0;font-family:Montserrat,sans-serif;font-size:15px;line-height:1.7;font-weight:400;background-color:#fff}
+		.wrap-menu-header{position:fixed;top:0;left:0;width:100%;z-index:1000;background-color:rgba(0,0,0,0.3);transition:all 0.4s}
+		.wrap-menu-header.scrolled{background-color:rgba(0,0,0,0.9)}
+		.logo{max-width:150px}
+		.section-slide{min-height:100vh;position:relative}
+		.item-slick1{min-height:100vh;background-size:cover;background-position:center;background-repeat:no-repeat}
+		/* Reduce animations on mobile for better performance */
+		@media (max-width: 768px) {
+			.animated{animation:none !important;opacity:1 !important;transform:none !important}
+			.wrap-menu-header{transition:none}
+		}
+	</style>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -27,7 +43,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" media="print" onload="this.media='all'">
+	<!-- Disable animations on mobile for better performance -->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" media="(min-width: 769px) and print" onload="if(window.innerWidth > 768){this.media='all'}"  <noscript><link rel="stylesheet" href="vendor/animate/animate.css"></noscript>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
@@ -178,7 +195,7 @@
 	<section class="section-slide">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1 item1-slick1" style="background-image: url(images/slide1-01.webp), url(images/slide1-01.jpg);">
+				<div class="item-slick1 item1-slick1" data-mobile-bg="images/slide1-01-mobile.webp" data-tablet-bg="images/slide1-01-tablet.webp" data-desktop-bg="images/slide1-01.webp" style="background-image: url(images/slide1-01.webp), url(images/slide1-01.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown" lang="hy">
 							Բարի Գալուստ
@@ -197,7 +214,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 item2-slick1" style="background-image: url(images/master-slides-02.webp), url(images/master-slides-02.jpg);">
+				<div class="item-slick1 item2-slick1" data-mobile-bg="images/master-slides-02-mobile.webp" data-tablet-bg="images/master-slides-02-tablet.webp" data-desktop-bg="images/master-slides-02.webp" style="background-image: url(images/master-slides-02.webp), url(images/master-slides-02.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
 							Բարի Գալուստ
@@ -216,7 +233,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 item3-slick1" style="background-image: url(images/master-slides-01.webp), url(images/master-slides-01.jpg);">
+				<div class="item-slick1 item3-slick1" data-mobile-bg="images/master-slides-01-mobile.webp" data-tablet-bg="images/master-slides-01-tablet.webp" data-desktop-bg="images/master-slides-01.webp" style="background-image: url(images/master-slides-01.webp), url(images/master-slides-01.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
 							Բարի Գալուստ
@@ -935,6 +952,20 @@
 	<script type="text/javascript" src="vendor/slick/slick.min.js" defer></script>
 	<script type="text/javascript" src="js/slick-custom.js" defer></script>
 <!--===============================================================================================-->
+	<!-- Mobile Performance: Reduce slider autoplay speed on mobile -->
+	<script>
+		if (window.innerWidth <= 768) {
+			// Disable autoplay on mobile to reduce CPU usage
+			document.addEventListener('DOMContentLoaded', function() {
+				if (typeof $.fn.slick !== 'undefined') {
+					setTimeout(function() {
+						$('.slick1').slick('slickSetOption', 'autoplay', false, true);
+					}, 100);
+				}
+			});
+		}
+	</script>
+<!--===============================================================================================-->
 	<!-- Partners Slider Styles -->
 	<style>
 		.section-partners {
@@ -1078,10 +1109,15 @@
 		}
 	</style>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/parallax100/parallax100.js" defer></script>
+	<!-- Only load parallax on desktop for better mobile performance -->
+	<script>
+		if (window.innerWidth > 768) {
+			document.write('<script type="text/javascript" src="vendor/parallax100/parallax100.js" defer><\/script>');
+		}
+	</script>
 	<script type="text/javascript" defer>
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof jQuery !== 'undefined' && typeof jQuery.fn.parallax100 !== 'undefined') {
+            if (window.innerWidth > 768 && typeof jQuery !== 'undefined' && typeof jQuery.fn.parallax100 !== 'undefined') {
                 $('.parallax100').parallax100();
             }
         });
@@ -1098,6 +1134,42 @@
 	<script src="js/navbar-footer-translations.js" defer></script>
 	<script type="module" src="js/subscription-handler.js"></script>
 	<script src="js/admin-access.js" defer></script>
+	
+	<!-- Responsive slider images for mobile performance -->
+	<script>
+		// Load appropriate slider images based on viewport width
+		function loadResponsiveSliderImages() {
+			var width = window.innerWidth;
+			$('.item-slick1').each(function() {
+				var $slide = $(this);
+				var bgImage;
+				
+				if (width <= 768 && $slide.data('mobile-bg')) {
+					bgImage = $slide.data('mobile-bg');
+				} else if (width <= 1200 && $slide.data('tablet-bg')) {
+					bgImage = $slide.data('tablet-bg');
+				} else if ($slide.data('desktop-bg')) {
+					bgImage = $slide.data('desktop-bg');
+				}
+				
+				if (bgImage) {
+					$slide.css('background-image', 'url(' + bgImage + ')');
+				}
+			});
+		}
+		
+		// Load on page load
+		$(document).ready(function() {
+			loadResponsiveSliderImages();
+		});
+		
+		// Reload on window resize (debounced)
+		var resizeTimer;
+		$(window).resize(function() {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(loadResponsiveSliderImages, 250);
+		});
+	</script>
 	
 	<!-- Navbar scroll effect -->
 	<script>
