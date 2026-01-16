@@ -45,6 +45,27 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/admin-access.css">
+	<!-- Responsive slider images via CSS media queries (better than JS) -->
+	<style>
+		/* Mobile: Load small images */
+		@media (max-width: 768px) {
+			.item1-slick1 { background-image: url(images/slide1-01-mobile.webp) !important; }
+			.item2-slick1 { background-image: url(images/master-slides-02-mobile.webp) !important; }
+			.item3-slick1 { background-image: url(images/master-slides-01-mobile.webp) !important; }
+		}
+		/* Tablet: Load medium images */
+		@media (min-width: 769px) and (max-width: 1200px) {
+			.item1-slick1 { background-image: url(images/slide1-01-tablet.webp) !important; }
+			.item2-slick1 { background-image: url(images/master-slides-02-tablet.webp) !important; }
+			.item3-slick1 { background-image: url(images/master-slides-01-tablet.webp) !important; }
+		}
+		/* Desktop: Load full-size WebP images */
+		@media (min-width: 1201px) {
+			.item1-slick1 { background-image: url(images/slide1-01.webp) !important; }
+			.item2-slick1 { background-image: url(images/master-slides-02.webp) !important; }
+			.item3-slick1 { background-image: url(images/master-slides-01.webp) !important; }
+		}
+	</style>
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -179,7 +200,7 @@
 	<section class="section-slide">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1 item1-slick1" data-mobile-bg="images/slide1-01-mobile.webp" data-tablet-bg="images/slide1-01-tablet.webp" data-desktop-bg="images/slide1-01.webp" style="background-image: url(images/slide1-01.webp), url(images/slide1-01.jpg);">
+				<div class="item-slick1 item1-slick1">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown" lang="hy">
 							Բարի Գալուստ
@@ -198,7 +219,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 item2-slick1" data-mobile-bg="images/master-slides-02-mobile.webp" data-tablet-bg="images/master-slides-02-tablet.webp" data-desktop-bg="images/master-slides-02.webp" style="background-image: url(images/master-slides-02.webp), url(images/master-slides-02.jpg);">
+				<div class="item-slick1 item2-slick1">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
 							Բարի Գալուստ
@@ -217,7 +238,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 item3-slick1" data-mobile-bg="images/master-slides-01-mobile.webp" data-tablet-bg="images/master-slides-01-tablet.webp" data-desktop-bg="images/master-slides-01.webp" style="background-image: url(images/master-slides-01.webp), url(images/master-slides-01.jpg);">
+				<div class="item-slick1 item3-slick1">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
 							Բարի Գալուստ
@@ -1099,24 +1120,6 @@
 	<script src="js/navbar-footer-translations.js" defer></script>
 	<script type="module" src="js/subscription-handler.js"></script>
 	<script src="js/admin-access.js" defer></script>
-	
-	<!-- Optimized responsive image loading (non-blocking) -->
-	<script defer>
-		window.addEventListener('load', function() {
-			var w = window.innerWidth;
-			if (w <= 768) {
-				document.querySelectorAll('.item-slick1').forEach(function(el) {
-					var img = el.getAttribute('data-mobile-bg');
-					if (img) el.style.backgroundImage = 'url(' + img + ')';
-				});
-			} else if (w <= 1200) {
-				document.querySelectorAll('.item-slick1').forEach(function(el) {
-					var img = el.getAttribute('data-tablet-bg');
-					if (img) el.style.backgroundImage = 'url(' + img + ')';
-				});
-			}
-		});
-	</script>
 	
 	<!-- Navbar scroll effect -->
 	<script>
