@@ -4,11 +4,21 @@
 	<title>GAOS - Premium HORECA Furniture</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Performance optimization meta tags -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
+	<!-- DNS prefetch and preconnect for external resources -->
+	<link rel="dns-prefetch" href="https://www.youtube.com">
+	<link rel="preconnect" href="https://www.youtube.com" crossorigin>
+	<!-- Preload critical resources -->
+	<link rel="preload" as="style" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="preload" as="style" href="css/util.css">
+	<link rel="preload" as="style" href="css/index.css">
+	<link rel="preload" as="script" href="vendor/jquery/jquery-3.2.1.min.js">
 	<!-- Preload critical images for faster loading -->
-	<link rel="preload" as="image" href="images/slide1-01.jpg" fetchpriority="high">
+	<link rel="preload" as="image" href="images/slide1-01.webp" type="image/webp" fetchpriority="high">
 	<link rel="preload" as="image" href="images/icons/logo.png" fetchpriority="high">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -17,19 +27,19 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css" media="print" onload="this.media='all'">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
@@ -168,7 +178,7 @@
 	<section class="section-slide">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1 item1-slick1" style="background-image: url(images/slide1-01.jpg);">
+				<div class="item-slick1 item1-slick1" style="background-image: url(images/slide1-01.webp), url(images/slide1-01.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown" lang="hy">
 							Բարի Գալուստ
@@ -187,7 +197,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 item2-slick1" style="background-image: url(images/master-slides-02.jpg);">
+				<div class="item-slick1 item2-slick1" style="background-image: url(images/master-slides-02.webp), url(images/master-slides-02.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
 							Բարի Գալուստ
@@ -206,7 +216,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1 item3-slick1" style="background-image: url(images/master-slides-01.jpg);">
+				<div class="item-slick1 item3-slick1" style="background-image: url(images/master-slides-01.webp), url(images/master-slides-01.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
 							Բարի Գալուստ
@@ -256,7 +266,10 @@
 
 				<div class="col-md-6 p-b-30">
 					<div class="wrap-pic-welcome size2 bo-rad-10 hov-img-zoom m-l-r-auto">
-						<img src="images/our-story-01.jpg" alt="IMG-OUR">
+						<picture>
+							<source srcset="images/our-story-01.webp" type="image/webp">
+							<img src="images/our-story-01.jpg" alt="IMG-OUR" loading="lazy">
+						</picture>
 					</div>
 				</div>
 			</div>
@@ -265,7 +278,7 @@
 
 	<!-- Intro -->
 	<section class="section-intro">
-		<div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(images/bg-intro-01.jpg);">
+		<div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(images/bg-intro-01.webp), url(images/bg-intro-01.jpg);">
 			<span class="tit2 p-l-15 p-r-15" lang="hy">
 				Բացահայտե՛ք
 			</span>
@@ -282,7 +295,12 @@
 					<!-- Block1 -->
 					<div class="blo1">
 						<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-							<a href="collection.html"><img src="images/intro-01.jpg" alt="IMG-INTRO"></a>
+							<a href="collection.html">
+								<picture>
+									<source srcset="images/intro-01.webp" type="image/webp">
+									<img src="images/intro-01.jpg" alt="IMG-INTRO" loading="lazy">
+								</picture>
+							</a>
 						</div>
 
 						<div class="wrap-text-blo1 p-t-35">
@@ -302,7 +320,12 @@
 					<!-- Block1 -->
 					<div class="blo1">
 						<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-							<a href="collection.html"><img src="images/intro-02.jpg" alt="IMG-INTRO"></a>
+							<a href="collection.html">
+								<picture>
+									<source srcset="images/intro-02.webp" type="image/webp">
+									<img src="images/intro-02.jpg" alt="IMG-INTRO" loading="lazy">
+								</picture>
+							</a>
 						</div>
 
 						<div class="wrap-text-blo1 p-t-35">
@@ -322,7 +345,12 @@
 					<!-- Block1 -->
 					<div class="blo1">
 						<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-							<a href="collection.html"><img src="images/intro-04.jpg" alt="IMG-INTRO"></a>
+							<a href="collection.html">
+								<picture>
+									<source srcset="images/intro-04.webp" type="image/webp">
+									<img src="images/intro-04.jpg" alt="IMG-INTRO" loading="lazy">
+								</picture>
+							</a>
 						</div>
 
 						<div class="wrap-text-blo1 p-t-35">
@@ -360,7 +388,7 @@
 					<div class="col-sm-6">
 						<!-- Item our menu -->
 						<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-							<img src="images/icons/furniture-chairs-index.jpg" alt="IMG-MENU">
+							<img src="images/icons/furniture-chairs-index.jpg" alt="IMG-MENU" loading="lazy">
 
 							<!-- Button2 -->
 							<a href="collection.html#chairs" class="btn2 flex-c-m txt5 ab-c-m size4">
@@ -372,7 +400,7 @@
 					<div class="col-sm-6">
 						<!-- Item our menu -->
 						<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-							<img src="images/icons/furniture-bar-index.jpg" alt="IMG-MENU">
+							<img src="images/icons/furniture-bar-index.jpg" alt="IMG-MENU" loading="lazy">
 
 							<!-- Button2 -->
 							<a href="collection.html#bar-chairs" class="btn2 flex-c-m txt5 ab-c-m size5">
@@ -384,7 +412,7 @@
 					<div class="col-12">
 						<!-- Item our menu -->
 						<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-							<img src="images/icons/furniture-sofas-index.jpg" alt="IMG-MENU">
+							<img src="images/icons/furniture-sofas-index.jpg" alt="IMG-MENU" loading="lazy">
 
 							<!-- Button2 -->
 							<a href="collection.html#sofas" class="btn2 flex-c-m txt5 ab-c-m size6">
@@ -400,7 +428,7 @@
 					<div class="col-12">
 						<!-- Item our menu -->
 						<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-							<img src="images/icons/furniture-tables-index.jpg" alt="IMG-MENU">
+							<img src="images/icons/furniture-tables-index.jpg" alt="IMG-MENU" loading="lazy">
 
 							<!-- Button2 -->
 							<a href="collection.html#tables" class="btn2 flex-c-m txt5 ab-c-m size7">
@@ -412,7 +440,7 @@
 					<div class="col-12">
 						<!-- Item our menu -->
 						<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-							<img src="images/icons/furniture-outdoor-index.jpg" alt="IMG-MENU">
+							<img src="images/icons/furniture-outdoor-index.jpg" alt="IMG-MENU" loading="lazy">
 
 							<!-- Button2 -->
 							<a href="collection.html#outdoor" class="btn2 flex-c-m txt5 ab-c-m size8">
@@ -424,7 +452,7 @@
 					<div class="col-12">
 						<!-- Item our menu -->
 						<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-							<img src="images/icons/furniture-food-court-index.jpg" alt="IMG-MENU">
+							<img src="images/icons/furniture-food-court-index.jpg" alt="IMG-MENU" loading="lazy">
 
 							<!-- Button2 -->
 							<a href="collection.html#food-court" class="btn2 flex-c-m txt5 ab-c-m size9">
@@ -560,7 +588,10 @@
 
 				<div class="col-lg-6 p-b-30 p-t-18">
 					<div class="wrap-pic-booking size2 bo-rad-10 hov-img-zoom m-l-r-auto">
-						<img src="images/booking-01.jpg" alt="IMG-OUR">
+						<picture>
+							<source srcset="images/booking-01.webp" type="image/webp">
+							<img src="images/booking-01.jpg" alt="IMG-OUR" loading="lazy">
+						</picture>
 					</div>
 				</div>
 			</div>
@@ -792,51 +823,51 @@
 					<!-- Gallery footer -->
 					<div class="wrap-gallery-footer flex-w">
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-01.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-02.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-03.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-04.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-04.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-04.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-05.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-06.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-07.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-08.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-08.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-08.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-09.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-10.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-11.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY" loading="lazy">
 						</a>
 
 						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-thumb-12.jpg" data-lightbox="gallery-footer">
-							<img src="images/photo-gallery-thumb-12.jpg" alt="GALLERY">
+							<img src="images/photo-gallery-thumb-12.jpg" alt="GALLERY" loading="lazy">
 						</a>
 					</div>
 
@@ -891,18 +922,18 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+	<script type="text/javascript" src="vendor/animsition/js/animsition.min.js" defer></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/bootstrap/js/popper.js"></script>
-	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="vendor/bootstrap/js/popper.js" defer></script>
+	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js" defer></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script type="text/javascript" src="vendor/select2/select2.min.js" defer></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
-	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js" defer></script>
+	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js" defer></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
-	<script type="text/javascript" src="js/slick-custom.js"></script>
+	<script type="text/javascript" src="vendor/slick/slick.min.js" defer></script>
+	<script type="text/javascript" src="js/slick-custom.js" defer></script>
 <!--===============================================================================================-->
 	<!-- Partners Slider Styles -->
 	<style>
@@ -1047,22 +1078,26 @@
 		}
 	</style>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/parallax100/parallax100.js"></script>
-	<script type="text/javascript">
-        $('.parallax100').parallax100();
+	<script type="text/javascript" src="vendor/parallax100/parallax100.js" defer></script>
+	<script type="text/javascript" defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof jQuery !== 'undefined' && typeof jQuery.fn.parallax100 !== 'undefined') {
+                $('.parallax100').parallax100();
+            }
+        });
 	</script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/countdowntime/countdowntime.js"></script>
+	<script type="text/javascript" src="vendor/countdowntime/countdowntime.js" defer></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
+	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js" defer></script>
 <!--===============================================================================================-->
-	<script src="js/footer-gallery-fix.js"></script>
+	<script src="js/footer-gallery-fix.js" defer></script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
-	<script src="js/texts/index-texts.js"></script>
-	<script src="js/navbar-footer-translations.js"></script>
+	<script src="js/main.js" defer></script>
+	<script src="js/texts/index-texts.js" defer></script>
+	<script src="js/navbar-footer-translations.js" defer></script>
 	<script type="module" src="js/subscription-handler.js"></script>
-	<script src="js/admin-access.js"></script>
+	<script src="js/admin-access.js" defer></script>
 	
 	<!-- Navbar scroll effect -->
 	<script>

@@ -1,0 +1,193 @@
+# ============================================
+# GAOS Website Performance Optimization
+# Apache .htaccess Configuration
+# ============================================
+
+# ============================================
+# 1. GZIP COMPRESSION (60-70% file size reduction)
+# ============================================
+<IfModule mod_deflate.c>
+  # Compress HTML, CSS, JavaScript, Text, XML
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+  
+  # Compress fonts
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE application/font-woff
+  AddOutputFilterByType DEFLATE application/font-woff2
+  
+  # Don't compress images (already compressed)
+  SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|ico)$ no-gzip dont-vary
+</IfModule>
+
+# ============================================
+# 2. BROWSER CACHING (Instant repeat visits)
+# ============================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  
+  # Images - Cache for 1 year
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+  
+  # CSS and JavaScript - Cache for 1 month
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  
+  # Fonts - Cache for 1 year
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  
+  # HTML - Cache for 1 hour
+  ExpiresByType text/html "access plus 1 hour"
+  
+  # Data files
+  ExpiresByType application/json "access plus 1 day"
+  ExpiresByType application/xml "access plus 1 day"
+  ExpiresByType text/xml "access plus 1 day"
+</IfModule>
+
+# ============================================
+# 3. CACHE-CONTROL HEADERS
+# ============================================
+<IfModule mod_headers.c>
+  # Cache static assets for 1 year
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|woff|woff2|ttf|otf|eot)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  
+  # Cache HTML for 1 hour
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=3600, public, must-revalidate"
+  </FilesMatch>
+  
+  # Don't cache dynamic content
+  <FilesMatch "\.(php|cgi|pl)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+  </FilesMatch>
+</IfModule>
+
+# ============================================
+# 4. ENABLE KEEP-ALIVE (Faster connections)
+# ============================================
+<IfModule mod_headers.c>
+  Header set Connection keep-alive
+</IfModule>
+
+# ============================================
+# 5. MIME TYPES (Ensure proper file handling)
+# ============================================
+<IfModule mod_mime.c>
+  # JavaScript
+  AddType application/javascript js
+  AddType application/x-javascript js
+  
+  # Images
+  AddType image/webp webp
+  AddType image/svg+xml svg svgz
+  
+  # Fonts
+  AddType font/ttf ttf
+  AddType font/otf otf
+  AddType font/woff woff
+  AddType font/woff2 woff2
+  AddType application/font-woff woff
+  AddType application/font-woff2 woff2
+  
+  # CSS
+  AddType text/css css
+  
+  # JSON
+  AddType application/json json
+</IfModule>
+
+# ============================================
+# 6. SECURITY HEADERS
+# ============================================
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # Prevent MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  
+  # Enable XSS protection
+  Header always set X-XSS-Protection "1; mode=block"
+  
+  # Referrer policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ============================================
+# 7. DISABLE ETAGS (Better caching)
+# ============================================
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
+
+# ============================================
+# 8. REMOVE SERVER SIGNATURE (Security)
+# ============================================
+ServerSignature Off
+
+# ============================================
+# 9. FORCE HTTPS (If you have SSL)
+# Uncomment these lines after setting up SSL
+# ============================================
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# ============================================
+# 10. OPTIMIZE FILE ACCESS
+# ============================================
+Options -Indexes
+Options +FollowSymLinks
+
+# ============================================
+# 11. PREVENT ACCESS TO SENSITIVE FILES
+# ============================================
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(env|json|md|log|bak|sql|sh)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# ============================================
+# END OF CONFIGURATION
+# ============================================
